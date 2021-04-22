@@ -97,23 +97,20 @@ py manage.py runserver 8001
 
 **确保本地已经有node.js环境**
 
-### 安装依赖
+#### 安装依赖
 ```
 npm install
 ```
 
-### 编译
+#### 编译
 ```
 npm run serve
 ```
 
-### 构建运行
+#### 构建运行
 ```
 npm run build
 ```
-
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
 
 ### 测试工具
 postman
