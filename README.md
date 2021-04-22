@@ -6,15 +6,54 @@
 
 - 后端：Django3.x
 
-## 参考资料
+## 运行方法
 
-1. [Django 官方中文文档](https://docs.djangoproject.com/zh-hans/3.2/)
+### 下载文件
+```
+git clone https://gitee.com/wgjmcal/vue-school-manager
+```
+### 运行后端
 
-2. [Django REST framework 中文文档](https://q1mi.github.io/Django-REST-framework-documentation/)
+#### 进入SchoolManagerApi文件夹
+```
+cd SchoolManagerApi
+```
+#### 安装依赖
 
-3. [Django Rest Framework 自动生成接口文档的方法](https://cloud.tencent.com/developer/article/1632466)
+```
+pip install -r requirements.txt
+```
+#### 运行
 
-4. [后台系统参考](http://gl.timemeetyou.com/#/login)
+```
+py manage.py runserver 8001
+```
+> 此处的端口8001需要与前端一致
+
+#### 查看API
+
+浏览器打开：http://127.0.0.1:8001/docs/
+
+
+### 运行前端
+
+**确保本地已经有node.js环境**
+
+#### 安装依赖
+```
+npm install
+```
+
+#### 编译
+```
+npm run serve
+```
+
+#### 构建运行
+```
+npm run build
+```
+
 
 ## 文件说明
 ```
@@ -64,53 +103,15 @@
 ├─public--------------------------------------公共资源文件
 └─MyWeb---------------------------------------后端v2(待完成)
 ````
-## 运行方法
+## 参考资料
 
-### 下载文件
-```
-git clone https://gitee.com/wgjmcal/vue-school-manager
-```
-### 运行后端
+1. [Django 官方中文文档](https://docs.djangoproject.com/zh-hans/3.2/)
 
-#### 进入SchoolManagerApi文件夹
-```
-cd SchoolManagerApi
-```
-#### 安装依赖
+2. [Django REST framework 中文文档](https://q1mi.github.io/Django-REST-framework-documentation/)
 
-```
-pip install -r requirements.txt
-```
-#### 运行
+3. [Django Rest Framework 自动生成接口文档的方法](https://cloud.tencent.com/developer/article/1632466)
 
-```
-py manage.py runserver 8001
-```
-> 此处的端口8001需要与前端一致
-
-#### 查看API
-
-浏览器打开：http://127.0.0.1:8001/docs/
-
-
-### 运行前端
-
-**确保本地已经有node.js环境**
-
-#### 安装依赖
-```
-npm install
-```
-
-#### 编译
-```
-npm run serve
-```
-
-#### 构建运行
-```
-npm run build
-```
+4. [后台系统参考](http://gl.timemeetyou.com/#/login)
 
 ### 测试工具
 postman
