@@ -1,14 +1,20 @@
 # 教务管理系统
 
 ## 技术栈
-前端：vue3.x
-后端：Django3.x
+
+- 前端：vue3.x
+
+- 后端：Django3.x
 
 ## 参考资料
-[Django 官方中文文档](https://docs.djangoproject.com/zh-hans/3.2/)
-[Django REST framework 中文文档](https://q1mi.github.io/Django-REST-framework-documentation/)
-[Django Rest Framework 自动生成接口文档的方法](https://cloud.tencent.com/developer/article/1632466)
-[后台系统参考](http://gl.timemeetyou.com/#/login)
+
+1. [Django 官方中文文档](https://docs.djangoproject.com/zh-hans/3.2/)
+
+2. [Django REST framework 中文文档](https://q1mi.github.io/Django-REST-framework-documentation/)
+
+3. [Django Rest Framework 自动生成接口文档的方法](https://cloud.tencent.com/developer/article/1632466)
+
+4. [后台系统参考](http://gl.timemeetyou.com/#/login)
 
 ## 文件说明
 ```
