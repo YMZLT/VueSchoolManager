@@ -40,6 +40,33 @@ class UserManager(BaseUserManager):
         user.save()
         return user
 
+class StudentManager(BaseUserManager):
+    def create(self, user,English_class,college):
+        if not user:
+            raise ValueError('Users must have an user')
+
+        student = StudentTable(
+            user = user,
+            English_class = English_class,
+            college = CollegeTable(**college)
+        )
+        student.save()
+        return student
+
+class TeacherManager(BaseUserManager):
+    def create(self, user,position,college):
+        if not user:
+            raise ValueError('Users must have an user')
+
+        teacher = TeacherTable(
+            user = user,
+            position = position,
+            college = CollegeTable(**college)
+        )
+        teacher.save()
+        return teacher
+
+
 
 class CollegeTable(models.Model):  # 院系表
     college_id = models.CharField(max_length=10, primary_key=True)  # 院系号
@@ -64,19 +91,21 @@ class User(AbstractBaseUser):
 
 
 class StudentTable(models.Model):
-    student = models.OneToOneField(User, on_delete=models.CASCADE)
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
     English_class = models.CharField(
         max_length=2)  # 英语等级
     college = models.ForeignKey(
         CollegeTable, on_delete=models.CASCADE)  # 院系号
+    objects = StudentManager()
 
 
 class TeacherTable(models.Model):
-    teacher = models.OneToOneField(User, on_delete=models.CASCADE)
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
     position = models.CharField(
         max_length=10)  # 职位
     college = models.ForeignKey(
         CollegeTable, on_delete=models.CASCADE)  # 院系号
+    objects = TeacherManager()
 
 
 class CourseTable(models.Model):  # 课程表(默认学分4，学时40)

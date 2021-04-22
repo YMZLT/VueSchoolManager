@@ -8,3 +8,9 @@ class CollegeSerializer(serializers.ModelSerializer):
     class Meta:
         model = md.CollegeTable
         fields = ['college_id', 'college_name']
+
+class UserSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = md.User
+        fields = ['user_id','user_name','password']
+    

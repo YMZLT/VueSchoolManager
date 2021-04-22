@@ -5,21 +5,21 @@ from rest_framework import status
 from Model import models as md
 
 # 2. 加载Serializer
-from Model import serializers
+from . import serializers
 
 
-# 院系数据接口
+# 教师数据接口
 @api_view(['GET', 'POST'])
-def College_list(request, format=None):
+def Teacher_list(request, format=None):
     """
-    列出所有的Colleges，或者创建一个新的College。
+    列出所有的Teachers，或者创建一个新的Teacher。
     """
     if request.method == 'GET':
-        Colleges = md.CollegeTable.objects.all()
-        serializer = serializers.CollegeSerializer(Colleges, many=True)
+        Teachers = md.TeacherTable.objects.all()
+        serializer = serializers.TeacherSerializer(Teachers, many=True)
         data = {
             'data': {
-                'colleges': serializer.data,
+                'Teachers': serializer.data,
                 'total': len(serializer.data)
             },
             'msg': 'success',
@@ -28,13 +28,13 @@ def College_list(request, format=None):
         return Response(data)
 
     elif request.method == 'POST':
-        serializer = serializers.CollegeSerializer(
+        serializer = serializers.TeacherSerializer(
             data=request.data, many=True)
         if serializer.is_valid():
             serializer.save()
             data = {
                 'data': {
-                    'colleges': serializer.data,
+                    'Teachers': serializer.data,
                 },
                 'msg': 'success',
                 'status': 200
@@ -49,13 +49,13 @@ def College_list(request, format=None):
 
 
 @api_view(['GET', 'PUT', 'DELETE'])
-def College_detail(request, college_id, format=None):
+def Teacher_detail(request, Teacher_id, format=None):
     """
-    获取，更新或删除一个College实例。
+    获取，更新或删除一个Teacher实例。
     """
     try:
-        College_instance = md.CollegeTable.objects.get(pk=college_id)
-    except md.CollegeTable.DoesNotExist:
+        Teacher_instance = md.TeacherTable.objects.get(user=Teacher_id)
+    except md.TeacherTable.DoesNotExist:
         data = {
             'msg': 'error',
             'status': status.HTTP_400_BAD_REQUEST,
@@ -64,10 +64,10 @@ def College_detail(request, college_id, format=None):
         return Response(data)
 
     if request.method == 'GET':
-        serializer = serializers.CollegeSerializer(College_instance)
+        serializer = serializers.TeacherSerializer(Teacher_instance)
         data = {
             'data': {
-                'colleges': serializer.data,
+                'Teachers': serializer.data,
             },
             'msg': 'success',
             'status': 200
@@ -75,14 +75,14 @@ def College_detail(request, college_id, format=None):
         return Response(data)
 
     elif request.method == 'PUT':
-        serializer = serializers.CollegeSerializer(
-            College_instance, data=request.data)
+        serializer = serializers.TeacherSerializer(
+            Teacher_instance, data=request.data,partial=True)
 
         if serializer.is_valid():
             serializer.save()
             data = {
                 'data': {
-                    'colleges': serializer.data,
+                    'Teachers': serializer.data,
                 },
                 'msg': 'success',
                 'status': 200
@@ -96,7 +96,7 @@ def College_detail(request, college_id, format=None):
         return Response(data)
 
     elif request.method == 'DELETE':
-        College_instance.delete()
+        Teacher_instance.delete()
         data = {
             'msg': 'success',
             'status': status.HTTP_204_NO_CONTENT,

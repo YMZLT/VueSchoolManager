@@ -1,13 +1,9 @@
 <template>
-    <div>
-        课程列表
-    </div>
+  <div>课程列表</div>
 </template>
+
 <script>
-export default {
-    
-}
+export default {}
 </script>
 <style lang="less" scoped>
-    
 </style>

@@ -54,7 +54,7 @@ def Student_detail(request, Student_id, format=None):
     获取，更新或删除一个Student实例。
     """
     try:
-        Student_instance = md.StudentTable.objects.get(student=Student_id)
+        Student_instance = md.StudentTable.objects.get(user=Student_id)
     except md.StudentTable.DoesNotExist:
         data = {
             'msg': 'error',
@@ -76,8 +76,7 @@ def Student_detail(request, Student_id, format=None):
 
     elif request.method == 'PUT':
         serializer = serializers.StudentSerializer(
-            Student_instance, data=request.data)
-
+            Student_instance, data=request.data,partial=True)
         if serializer.is_valid():
             serializer.save()
             data = {

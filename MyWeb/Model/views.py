@@ -76,7 +76,7 @@ def College_detail(request, college_id, format=None):
 
     elif request.method == 'PUT':
         serializer = serializers.CollegeSerializer(
-            College_instance, data=request.data)
+            College_instance, data=request.data,partial=True)
 
         if serializer.is_valid():
             serializer.save()
