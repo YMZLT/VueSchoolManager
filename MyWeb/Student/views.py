@@ -5,56 +5,17 @@ from rest_framework import status
 from Model import models as md
 
 # 2. 加载Serializer
-from . import serializers
+from Model import serializers
 
 
-# 学生数据接口
-@api_view(['GET', 'POST'])
-def Student_list(request, format=None):
-    """
-    列出所有的Students，或者创建一个新的Student。
-    """
-    if request.method == 'GET':
-        Students = md.StudentTable.objects.all()
-        serializer = serializers.StudentSerializer(Students, many=True)
-        data = {
-            'data': {
-                'Students': serializer.data,
-                'total': len(serializer.data)
-            },
-            'msg': 'success',
-            'status': 200
-        }
-        return Response(data)
-
-    elif request.method == 'POST':
-        serializer = serializers.StudentSerializer(
-            data=request.data, many=True)
-        if serializer.is_valid():
-            serializer.save()
-            data = {
-                'data': {
-                    'Students': serializer.data,
-                },
-                'msg': 'success',
-                'status': 200
-            }
-            return Response(data)
-        data = {
-            'msg': 'error',
-            'status': status.HTTP_400_BAD_REQUEST,
-            'detail': serializer.errors
-        }
-        return Response(data)
-
-
+# 学生信息数据
 @api_view(['GET', 'PUT', 'DELETE'])
-def Student_detail(request, Student_id, format=None):
+def Student_detail(request, student_id, format=None):
     """
     获取，更新或删除一个Student实例。
     """
     try:
-        Student_instance = md.StudentTable.objects.get(user=Student_id)
+        Student_instance = md.StudentTable.objects.get(user=student_id)
     except md.StudentTable.DoesNotExist:
         data = {
             'msg': 'error',
