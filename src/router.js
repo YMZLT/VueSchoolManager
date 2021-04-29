@@ -1,12 +1,8 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 import Login from './components/Login.vue'
-import Home from './components/Home.vue'
-import Welcome from './components/Welcome.vue'
-import Users from './components/user/Users.vue'
-import Students from './components/user/Students.vue'
-import Teachers from './components/user/Teachers.vue'
-import Courses from './components/course/Courses.vue'
+import Home from './components/admin/Home.vue'
+import Welcome from './components/admin/Welcome.vue'
 
 Vue.use(Router)
 
