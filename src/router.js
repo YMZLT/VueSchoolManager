@@ -1,9 +1,10 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 import Login from './components/Login.vue'
+
 import Home_admin from './components/admin/Home.vue'
 import Welcome_admin from './components/admin/Welcome.vue'
-import User_admin from './components/admin/User.vue'
+import Admins from './components/admin/Admins.vue'
 
 import Home_student from './components/student/Home.vue'
 import Welcome_student from './components/student/Welcome.vue'
@@ -26,7 +27,7 @@ const router = new Router({
       redirect: '/admin/welcome',
       children: [
         { path: '/admin/welcome', component: Welcome_admin },
-        { path: '/admin/users', component: User_admin },
+        { path: '/admin/admins', component: Admins },
       ]
     },
     

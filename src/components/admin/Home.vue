@@ -68,53 +68,70 @@ export default {
       // 左侧菜单数据
       menuList: [
         {
-          id: 5,
+          id: 1,
           authName: '用户管理',
           path: null,
           children: [
             {
-              id: 4,
-              authName: '管理元列表',
-              path: 'users/',
+              id: 1,
+              authName: '管理员',
+              path: 'admins/',
               children: [],
             },
-          ],
-        },
-        {
-          id: 1,
-          authName: '课程管理',
-          path: null,
-          children: [
             {
-              id: 4,
-              authName: '课程列表',
-              path: 'courses/',
+              id: 2,
+              authName: '学生',
+              path: 'students/',
+              children: [],
+            },
+            {
+              id: 3,
+              authName: '教师',
+              path: 'teachers/',
               children: [],
             },
           ],
         },
         {
           id: 2,
-          authName: '学生管理',
+          authName: '信息管理',
           path: null,
           children: [
             {
-              id: 4,
-              authName: '学生列表',
-              path: 'students/',
+              id: 1,
+              authName: '院系列表',
+              path: 'colleges/',
+              children: [],
+            },
+            {
+              id: 2,
+              authName: '课程列表',
+              path: 'courses/',
+              children: [],
+            },
+            {
+              id: 3,
+              authName: '开课列表',
+              path: 'opens/',
               children: [],
             },
           ],
         },
         {
           id: 3,
-          authName: '教师管理',
+          authName: '教务管理',
           path: null,
           children: [
             {
-              id: 4,
-              authName: '教师列表',
-              path: 'teachers/',
+              id: 1,
+              authName: '选课管理',
+              path: 'selections/',
+              children: [],
+            },
+            {
+              id: 2,
+              authName: '成绩管理',
+              path: 'scores/',
               children: [],
             },
           ],

@@ -116,9 +116,9 @@ def SuperUser_search(request):
         data: 返回错误信息或正确的数据
     """
     # request.query_params返回解析之后的查询字符串数据
-    # query = request.query_params.dict()  # 变成字典
+    query = request.query_params.dict()  # 变成字典
     try:
-        SuperUser_instance = md.User.objects.filter(is_admin=True)
+        SuperUser_instance = md.User.objects.filter(is_admin=True).filter(**query)
     except md.User.DoesNotExist:
         data = {
             'msg': 'error',
