@@ -37,7 +37,7 @@ INSTALLED_APPS = [
     'Teacher',
     'Admin',
     'rest_framework',  # 框架配置
-    'corsheaders', # 跨域请求配置
+    'corsheaders', # 跨域请求注册应用
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -55,6 +55,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'corsheaders.middleware.CorsMiddleware' ,  # 跨域请求注册中间件
 ]
 
 # drf框架的配置信息
@@ -152,40 +153,16 @@ USE_TZ = True
 STATIC_URL = '/static/'
 
 # 跨域请求配置---开始
-MIDDLEWARE_CLASSES = (
-    ...
-    'corsheaders.middleware.CorsMiddleware',
-    'django.middleware.common.CommonMiddleware', # 注意顺序
-    ...
-)
-#跨域增加忽略
-CORS_ALLOW_CREDENTIALS = True
-CORS_ORIGIN_ALLOW_ALL = True
-CORS_ORIGIN_WHITELIST = (
-    '*'
-)
 
-CORS_ALLOW_METHODS = (
-    'DELETE',
-    'GET',
-    'OPTIONS',
-    'PATCH',
-    'POST',
-    'PUT',
-    'VIEW',
-)
+# 允许全部来源
+CORS_ORIGIN_ALLOW_ALL  = True  # 如果为True，将不使用白名单，并且将接受所有来源。默认为False。
 
-CORS_ALLOW_HEADERS = (
-    'XMLHttpRequest',
-    'X_FILENAME',
-    'accept-encoding',
-    'authorization',
-    'content-type',
-    'dnt',
-    'origin',
-    'user-agent',
-    'x-csrftoken',
-    'x-requested-with',
-    'Pragma',
-)
+# 白名单
+# CORS_ORIGIN_WHITELIST  =  [
+#     "https://example.com",
+#     "https://sub.example.com",
+#     "http：// localhost：8080",
+#     "http://127.0.0.1:9000"
+# ]
+
 # 跨域请求配置---结束
