@@ -1,8 +1,12 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 import Login from './components/Login.vue'
-import Home from './components/admin/Home.vue'
-import Welcome from './components/admin/Welcome.vue'
+import Home_admin from './components/admin/Home.vue'
+import Welcome_admin from './components/student/Welcome.vue'
+import Home_student from './components/student/Home.vue'
+import Welcome_student from './components/student/Welcome.vue'
+import Home_teacher from './components/teacher/Home.vue'
+import Welcome_teacher from './components/teacher/Welcome.vue'
 
 Vue.use(Router)
 
@@ -12,11 +16,27 @@ const router = new Router({
     { path: '/', redirect: '/login' },
     { path: '/login', component: Login },
     {
-      path: '/home',
-      component: Home,
-      redirect: 'welcome',
+      path: '/admin/home',
+      component: Home_admin,
+      redirect: '/admin/welcome',
       children: [
-        { path: '/welcome', component: Welcome },
+        { path: '/admin/welcome', component: Welcome_admin },
+      ]
+    },
+    {
+      path: '/student/home',
+      component: Home_student,
+      redirect: '/student/welcome',
+      children: [
+        { path: '/student/welcome', component: Welcome_student },
+      ]
+    },
+    {
+      path: '/teacher/home',
+      component: Home_teacher,
+      redirect: '/teacher/welcome',
+      children: [
+        { path: '/teacher/welcome', component: Welcome_teacher },
       ]
     },
   ]

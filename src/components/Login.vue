@@ -90,8 +90,10 @@ export default {
         // 1.将登录成功之后的 token，保存到客户端的 sessionStorage
         // console.log(res);
         window.sessionStorage.setItem('token', res.data.token)
-        // 2.通过编程式导航跳转到后台主页，路由地址 /home
-        this.$router.push('/home')
+        // 2.通过编程式导航跳转到后台主页，路由地址
+        // this.$router.push('/admin/home') // 跳转到管理员页面
+        // this.$router.push('/student/home') // 跳转到学生页面
+        this.$router.push('/teacher/home') // 跳转到教师页面
       })
     },
   },
