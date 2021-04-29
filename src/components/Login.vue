@@ -81,19 +81,17 @@ export default {
     // 点击登录按钮
     loginIn() {
       this.$refs.loginFormRef.validate(async (valid) => {
-        console.log(valid);
+        // console.log(valid);
         if (!valid) return
-        console.log(this.loginForm);
-        const res = await this.$http.post('login/', this.loginForm)
-        // const { data: res } = await this.$http.post('login/', this.loginForm)
-        console.log('res',res);
-        // if (res.status !== 200) return this.$message.error('登录失败')
-        // this.$message.success('登录成功')
-        // // 1.将登录成功之后的 token，保存到客户端的 sessionStorage
-        // // console.log(res);
-        // window.sessionStorage.setItem('token', res.data.token)
-        // // 2.通过编程式导航跳转到后台主页，路由地址 /home
-        // this.$router.push('/home')
+        const { data: res } = await this.$http.post('login/', this.loginForm)
+        console.log(res);
+        if (res.status !== 200) return this.$message.error('登录失败')
+        this.$message.success('登录成功')
+        // 1.将登录成功之后的 token，保存到客户端的 sessionStorage
+        // console.log(res);
+        window.sessionStorage.setItem('token', res.data.token)
+        // 2.通过编程式导航跳转到后台主页，路由地址 /home
+        this.$router.push('/home')
       })
     },
   },

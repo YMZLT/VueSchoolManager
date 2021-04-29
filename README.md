@@ -14,9 +14,9 @@ git clone https://gitee.com/wgjmcal/vue-school-manager
 ```
 ### 运行后端
 
-#### 进入SchoolManagerApi文件夹
+#### 进入MyWeb文件夹
 ```
-cd SchoolManagerApi
+cd MyWeb
 ```
 #### 安装依赖
 
@@ -82,24 +82,11 @@ npm run build
 |  |     ├─course-----------------------------课程管理
 |  |     |   └─Courses.vue--------------------课程页面
 |  └─assets-----------------------------------资源文件，存放图片等
-├─SchoolManagerApi----------------------------后端文件
+├─MyWeb----------------------------后端文件
 |        ├─db.sqlite3-------------------------本地数据库
 |        ├─manage.py--------------------------主程序入口
 |        ├─requirements.txt-------------------依赖文件
-|        ├─SchoolManagerApi-------------------项目主文件
-|        |        ├─asgi.py-------------------忽略
-|        |        ├─settings.py---------------全局设置文件，包括数据库、app设置等
-|        |        ├─urls.py-------------------路由设置文件
-|        |        └─wsgi.py-------------------忽略
-|        └─myWeb------------------------------主要app文件
-|            ├─admin.py-----------------------忽略
-|            ├─apps.py------------------------忽略
-|            ├─jwt.py-------------------------登录验证jwt
-|            ├─models.py----------------------数据库模型设定
-|            ├─serializers.py-----------------序列化器：转换json数据和python原生数据
-|            ├─tests.py-----------------------忽略
-|            ├─views.py-----------------------api接口
-|            └─migrations---------------------数据库迁移文件
+|        ├─MyWeb------------------------------项目主文件
 ├─public--------------------------------------公共资源文件
 └─MyWeb---------------------------------------后端v2(待完成)
 ````
@@ -118,183 +105,7 @@ postman
 
 下载连接：https://www.postman.com/
 
-###  测试数据
 
-1. 用户数据
-
-   ```json
-   [
-       {
-           "user_id": "12345678",
-           "user_name": "test",
-           "user_type": "S",
-           "password": "12345678",
-           "is_admin": false,
-           "college_id": "02",
-           "English_class": "C",
-           "position": ""
-       },
-       {
-           "user_id": "12345670",
-           "user_name": "test0",
-           "user_type": "S",
-           "password": "pbkdf2_sha256$216000$1OGAs3ZY8nPO$lGOrCkqHRsE6wgx/sc/ADlQBNlkghDLpNMGmj3Ok7kA=",
-           "is_admin": false,
-           "college_id": "02",
-           "English_class": "C",
-           "position": ""
-       },
-       {
-           "user_id": "12345671",
-           "user_name": "test1",
-           "user_type": "S",
-           "password": "pbkdf2_sha256$216000$IQioJOf4fBIg$kVBbWLWrlvQE9+c7O7WmRimy7tQotus9eKWR0MA9AkI=",
-           "is_admin": false,
-           "college_id": "01",
-           "English_class": "A",
-           "position": ""
-       },
-       {
-           "user_id": "12345672",
-           "user_name": "teacher2",
-           "user_type": "T",
-           "password": "pbkdf2_sha256$216000$uA1ViZhl5s8T$yAx1ixuTSLOJuRUhEoL7Y50fVNFSRq5MLThGV8Cl5HQ=",
-           "is_admin": false,
-           "college_id": "01",
-           "English_class": "",
-           "position": "教授"
-       },
-       {
-           "user_id": "12345673",
-           "user_name": "teacher3",
-           "user_type": "T",
-           "password": "pbkdf2_sha256$216000$z0DJjr2I1E3a$1nVveURNonqUngieUiwFM4IOtXP36pxWtETCoWg3BF4=",
-           "is_admin": true,
-           "college_id": "01",
-           "English_class": "",
-           "position": "教授"
-       }
-   ]
-   ```
-
-   
-
-2. 学院数据
-
-   ```json
-   [
-       {
-           "college_id": "01",
-           "college_name": "计算机学院"
-       },
-       {
-           "college_id": "02",
-           "college_name": "材料学院"
-       },
-       {
-           "college_id": "03",
-           "college_name": "环化学院"
-       },
-       {
-           "college_id": "04",
-           "college_name": "马克思主义学院"
-       }
-   ]
-   ```
-
-
-3. 课程数据
-
-   ```json
-   [
-       {
-       "course_id":"01",
-       "course_name":"数据库原理",
-       "credict":6,
-       "credit_hour":60,
-       "teacher_id":"12345672"
-   	},
-       {
-       "course_id":"02",
-       "course_name":"编译原理",
-       "credict":4,
-       "credit_hour":60,
-       "teacher_id":"12345672"
-   	},
-       {
-       "course_id":"03",
-       "course_name":"计算机组成原理",
-       "credict":5,
-       "credit_hour":60,
-       "teacher_id":"12345673"
-   	},
-   ]
-   ```
-
-   
-
-4. 开课数据
-
-   ```json
-   [
-       {
-       "opencourse_id":"01",
-       "course_id":"01",
-       "semaster":"202001",
-       "course_time":"星期三5-6"
-   	},
-       {
-       "opencourse_id":"02",
-       "course_id":"01",
-       "semaster":"202001",
-       "course_time":"星期一7-8"
-   	},
-       {
-       "opencourse_id":"03",
-       "course_id":"02",
-       "semaster":"202002",
-       "course_time":"星期一9-10"
-   	},
-       {
-       "opencourse_id":"04",
-       "course_id":"03",
-       "semaster":"202002",
-       "course_time":"星期四3-4"
-   	},
-       
-   ]
-   ```
-
-   
-
-5. 选课/成绩数据
-
-   ```json
-   [
-       {
-           "student_id":"12345671",
-       	"opencourse_id":"01",
-       	"score":90.0
-       },
-        {
-           "student_id":"12345671",
-       	"opencourse_id":"02",
-       	"score":0
-       },
-        {
-           "student_id":"12345671",
-       	"opencourse_id":"03",
-       	"score":0
-       },
-        {
-           "student_id":"12345671",
-       	"opencourse_id":"04",
-       	"score":0
-       },
-   ]
-   ```
-
-   
 ### 其他
 
 #### 项目目录生成
