@@ -2,7 +2,7 @@ import Vue from 'vue'
 import { Button, Input, Message, Form, FormItem, 
     Container,Header,Aside,Main,
     Menu,Submenu,MenuItemGroup,MenuItem,Breadcrumb,BreadcrumbItem,
-    Card,Row,Col,Table,TableColumn,Switch,Tooltip,Pagination
+    Card,Row,Col,Table,TableColumn,Switch,Tooltip,Pagination,Select,Option
 } from 'element-ui'
 
 
@@ -28,4 +28,6 @@ Vue.use(TableColumn)
 Vue.use(Switch)
 Vue.use(Tooltip)
 Vue.use(Pagination)
+Vue.use(Select)
+Vue.use(Option)
 Vue.prototype.$message = Message

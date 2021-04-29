@@ -38,10 +38,10 @@
 
             <!-- 二级菜单 -->
             <el-menu-item
-              :index="'/' + subItem.path"
               v-for="subItem in item.children"
               :key="subItem.id"
-              @click="saveNavState('/' + subItem.path)"
+              :index="'/admin/' + subItem.path"
+              @click="saveNavState('/admin/' + subItem.path)"
             >
               <template slot="title">
                 <i class="el-icon-menu"></i>
@@ -74,7 +74,7 @@ export default {
           children: [
             {
               id: 4,
-              authName: '用户列表',
+              authName: '管理元列表',
               path: 'users/',
               children: [],
             },
@@ -136,6 +136,7 @@ export default {
   },
   created() {
     // this.getMenuList()
+    // 获取左侧链接的激活状态
     this.activePath = window.sessionStorage.getItem('activePath')
   },
   methods: {

@@ -3,6 +3,8 @@ import Router from 'vue-router'
 import Login from './components/Login.vue'
 import Home_admin from './components/admin/Home.vue'
 import Welcome_admin from './components/admin/Welcome.vue'
+import User_admin from './components/admin/User.vue'
+
 import Home_student from './components/student/Home.vue'
 import Welcome_student from './components/student/Welcome.vue'
 import Home_teacher from './components/teacher/Home.vue'
@@ -15,14 +17,19 @@ const router = new Router({
     // 重定向
     { path: '/', redirect: '/login' },
     { path: '/login', component: Login },
+
+    // 管理员页面路由
+    { path: '/admin', redirect: '/admin/home' },
     {
       path: '/admin/home',
       component: Home_admin,
       redirect: '/admin/welcome',
       children: [
         { path: '/admin/welcome', component: Welcome_admin },
+        { path: '/admin/users', component: User_admin },
       ]
     },
+    
     {
       path: '/student/home',
       component: Home_student,
