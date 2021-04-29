@@ -7,10 +7,6 @@ from Model import models as md
 # 2. 加载Serializer
 from Model import serializers
 
-
-from rest_framework.authentication import SessionAuthentication, BasicAuthentication
-from rest_framework.permissions import IsAuthenticated
-
 @api_view(['POST'])
 def SuperUser_create(request, format=None):
     """
