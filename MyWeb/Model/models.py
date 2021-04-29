@@ -35,6 +35,7 @@ class UserManager(BaseUserManager):
             user_id=user_id,
             user_name=user_name,
             is_admin=is_admin,
+            user_type = 'A'
         )
         user.set_password(password)
         user.save()
@@ -44,7 +45,7 @@ class StudentManager(BaseUserManager):
     def create(self, user,English_class,college):
         if not user:
             raise ValueError('Users must have an user')
-
+        user.user_type = 'S'
         student = StudentTable(
             user = user,
             English_class = English_class,
@@ -57,7 +58,7 @@ class TeacherManager(BaseUserManager):
     def create(self, user,position,college):
         if not user:
             raise ValueError('Users must have an user')
-
+        user.user_type = 'T'
         teacher = TeacherTable(
             user = user,
             position = position,
@@ -78,6 +79,7 @@ class CollegeTable(models.Model):  # 院系表
 class User(AbstractBaseUser):
     user_id = models.CharField(max_length=10, primary_key=True)  # 学号/工号
     user_name = models.CharField(max_length=20)  # 姓名
+    user_type = models.CharField(max_length=2,default='S') # 用户类型
     is_admin = models.BooleanField(default=False)
     is_active = models.BooleanField(default=True)
     # 模型管理

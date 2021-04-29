@@ -1,6 +1,6 @@
 <template>
   <el-container class="home_container">
-    <!-- 头部区域 尽量不要改-->
+    <!-- 头部区域-->
     <el-header>
       <div>
         <img src="../../assets/system.png" alt="" />

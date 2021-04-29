@@ -43,8 +43,9 @@ export default {
   data() {
     return {
       // 登录表单的数据
+      // 教师
       loginForm: {
-        user_id: '1001',
+        user_id: '00000001',
         password: '12345678',
       },
       // 表单验证规则对象
@@ -84,16 +85,19 @@ export default {
         // console.log(valid);
         if (!valid) return
         const { data: res } = await this.$http.post('login/', this.loginForm)
-        console.log(res);
+        console.log(res)
         if (res.status !== 200) return this.$message.error('登录失败')
         this.$message.success('登录成功')
         // 1.将登录成功之后的 token，保存到客户端的 sessionStorage
-        // console.log(res);
         window.sessionStorage.setItem('token', res.data.token)
         // 2.通过编程式导航跳转到后台主页，路由地址
-        // this.$router.push('/admin/home') // 跳转到管理员页面
-        // this.$router.push('/student/home') // 跳转到学生页面
-        this.$router.push('/teacher/home') // 跳转到教师页面
+        // 跳转到管理员页面
+        if (res.data.user_type == 'A') this.$router.push('/admin/home')
+        // 跳转到学生页面
+        if (res.data.user_type == 'S') this.$router.push('/student/home')
+        // 跳转到教师页面
+        if (res.data.user_type == 'T') this.$router.push('/teacher/home')
+        return this.$message.error('登录失败')
       })
     },
   },

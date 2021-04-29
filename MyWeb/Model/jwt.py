@@ -37,7 +37,7 @@ def jwt_response_payload_handler(token, user=None, request=None):
             'token': token,
             'user_id': user.user_id,
             'user_name': user.user_name,
-            'is_admin': user.is_admin,
+            'user_type':user.user_type
         },
         "msg": "success",
         'status': 200
