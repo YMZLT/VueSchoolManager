@@ -8,37 +8,75 @@ from Model import models as md
 from Model import serializers
 
 
-# 教师数据接口
-@api_view(['GET', 'PUT', 'DELETE'])
-def Teacher_detail(request, teacher_id, format=None):
+@api_view(['GET'])
+def Teacher_info(request):
+    """按学号查询教师信息
     """
-    获取，更新或删除一个Teacher实例。
-    """
+    query = request.query_params.dict()  # 变成字典
     try:
-        Teacher_instance = md.TeacherTable.objects.get(user=teacher_id)
+        Teacher_instance = md.TeacherTable.objects.get(pk=query['teacher_id'])
     except md.TeacherTable.DoesNotExist:
         data = {
             'msg': 'error',
-            'status': status.HTTP_400_BAD_REQUEST,
+            'status': 400,
+            'detail': '数据不存在！'
+        }
+        return Response(data)
+    serializer = serializers.TeacherSerializer(Teacher_instance)
+    data = {
+        'data': {
+            'Teachers': serializer.data,
+        },
+        'msg': 'success',
+        'status': 200
+    }
+    return Response(data)
+
+
+@api_view(['GET'])
+def Student_info(request):
+    """按学号查询学生信息
+    """
+    query = request.query_params.dict()  # 变成字典
+    try:
+        Student_instance = md.StudentTable.objects.get(pk=query['student_id'])
+    except md.StudentTable.DoesNotExist:
+        data = {
+            'msg': 'error',
+            'status': 400,
+            'detail': '数据不存在！'
+        }
+        return Response(data)
+    serializer = serializers.StudentSerializer(Student_instance)
+    data = {
+        'data': {
+            'Students': serializer.data,
+        },
+        'msg': 'success',
+        'status': 200
+    }
+    return Response(data)
+
+
+@api_view(['PUT'])
+def Teacher_edit(request, format=None):
+    """
+    更新教师信息
+    """
+    query = request.query_params.dict()
+    try:
+        Teacher_instance = md.TeacherTable.objects.get(pk=query['teacher_id'])
+    except md.TeacherTable.DoesNotExist:
+        data = {
+            'msg': 'error',
+            'status': 400,
             'detail': '数据不存在！'
         }
         return Response(data)
 
-    if request.method == 'GET':
-        serializer = serializers.TeacherSerializer(Teacher_instance)
-        data = {
-            'data': {
-                'Teachers': serializer.data,
-            },
-            'msg': 'success',
-            'status': 200
-        }
-        return Response(data)
-
-    elif request.method == 'PUT':
+    if request.method == 'PUT':
         serializer = serializers.TeacherSerializer(
-            Teacher_instance, data=request.data,partial=True)
-
+            Teacher_instance, data=request.data, partial=True)
         if serializer.is_valid():
             serializer.save()
             data = {
@@ -51,15 +89,112 @@ def Teacher_detail(request, teacher_id, format=None):
             return Response(data)
         data = {
             'msg': 'error',
-            'status': status.HTTP_400_BAD_REQUEST,
+            'status': 400,
             'detail': serializer.errors
         }
         return Response(data)
 
-    elif request.method == 'DELETE':
-        Teacher_instance.delete()
+
+@api_view(['GET'])
+def Score_search(request):
+    """按条件查询选课信息
+
+    Args:
+        request: 请求
+
+    Returns:
+        data: 返回错误信息或正确的数据
+    """
+    # request.query_params返回解析之后的查询字符串数据
+    query = request.query_params.dict()  # 变成字典
+    try:
+        Score_instance = md.ScoreTable.objects.filter(**query)
+    except md.ScoreTable.DoesNotExist:
         data = {
-            'msg': 'success',
-            'status': status.HTTP_204_NO_CONTENT,
+            'msg': 'error',
+            'status': 400,
+            'detail': '数据不存在！'
         }
         return Response(data)
+    serializer = serializers.ScoreSerializer(Score_instance, many=True)
+    data = {
+        'data': {
+            'Scores': serializer.data,
+            'total': len(serializer.data)
+        },
+        'msg': 'success',
+        'status': 200
+    }
+    return Response(data)
+
+
+@api_view(['PUT'])
+def Score_edit(request, format=None):
+    """
+    修改成绩信息
+    """
+    query = request.query_params.dict()  # 变成字典
+    try:
+        Score_instance = md.ScoreTable.objects.filter(**query).first()
+
+    except md.ScoreTable.DoesNotExist:
+        data = {
+            'msg': 'error',
+            'status': 400,
+            'detail': '数据不存在！'
+        }
+        return Response(data)
+
+    if request.method == 'PUT':
+        serializer = serializers.ScoreSerializer(
+            Score_instance, data=request.data, partial=True)
+
+        if serializer.is_valid():
+            serializer.save()
+            data = {
+                'data': {
+                    'Scores': serializer.data,
+                },
+                'msg': 'success',
+                'status': 200
+            }
+            return Response(data)
+        data = {
+            'msg': 'error',
+            'status': 400,
+            'detail': serializer.errors
+        }
+        return Response(data)
+
+
+@api_view(['GET'])
+def Open_search(request):
+    """按条件查询开课信息
+
+    Args:
+        request: 请求
+
+    Returns:
+        data: 返回错误信息或正确的数据
+    """
+    # request.query_params返回解析之后的查询字符串数据
+    query = request.query_params.dict()  # 变成字典
+    try:
+        Open_instance = md.OpenTable.objects.filter(**query)
+    except md.OpenTable.DoesNotExist:
+        data = {
+            'msg': 'error',
+            'status': 400,
+            'detail': '数据不存在！'
+        }
+        return Response(data)
+    serializer = serializers.OpenSerializer(Open_instance, many=True)
+    data = {
+        'data': {
+            'Opens': serializer.data,
+            'total': len(serializer.data)
+        },
+        'msg': 'success',
+        'status': 200
+    }
+    return Response(data)

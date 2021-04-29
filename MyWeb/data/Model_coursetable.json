@@ -1,0 +1,102 @@
+[
+	{
+		"course_id": "01",
+		"course_name": "数据库原理",
+		"credit": "4 "
+	},
+	{
+		"course_id": "02",
+		"course_name": "操作系统",
+		"credit": "5 "
+	},
+	{
+		"course_id": "03",
+		"course_name": "编译原理",
+		"credit": "2 "
+	},
+	{
+		"course_id": "04",
+		"course_name": "面向对象",
+		"credit": "6 "
+	},
+	{
+		"course_id": "05",
+		"course_name": "python计算",
+		"credit": "4 "
+	},
+	{
+		"course_id": "06",
+		"course_name": "计算机基础",
+		"credit": "5 "
+	},
+	{
+		"course_id": "07",
+		"course_name": "C语言入门",
+		"credit": "2 "
+	},
+	{
+		"course_id": "08",
+		"course_name": "生活中的经济学",
+		"credit": "4 "
+	},
+	{
+		"course_id": "09",
+		"course_name": "科学计算",
+		"credit": "2 "
+	},
+	{
+		"course_id": "10",
+		"course_name": "艺术与审美",
+		"credit": "2 "
+	},
+	{
+		"course_id": "11",
+		"course_name": "哲学与人生",
+		"credit": "4 "
+	},
+	{
+		"course_id": "12",
+		"course_name": "计算机系统结构",
+		"credit": "4 "
+	},
+	{
+		"course_id": "13",
+		"course_name": "模式识别",
+		"credit": "5 "
+	},
+	{
+		"course_id": "14",
+		"course_name": "数据结构（1）",
+		"credit": "2 "
+	},
+	{
+		"course_id": "15",
+		"course_name": "数据结构（2）",
+		"credit": "6 "
+	},
+	{
+		"course_id": "16",
+		"course_name": "消费主义",
+		"credit": "2 "
+	},
+	{
+		"course_id": "17",
+		"course_name": "大学物理（1）",
+		"credit": "6 "
+	},
+	{
+		"course_id": "18",
+		"course_name": "大学物理（2）",
+		"credit": "4 "
+	},
+	{
+		"course_id": "19",
+		"course_name": "大学物理（3）",
+		"credit": "5 "
+	},
+	{
+		"course_id": "20",
+		"course_name": "线性代数",
+		"credit": "2 "
+	}
+]

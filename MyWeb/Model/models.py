@@ -91,7 +91,7 @@ class User(AbstractBaseUser):
 
 
 class StudentTable(models.Model):
-    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    user = models.OneToOneField(User, on_delete=models.CASCADE,primary_key=True)
     English_class = models.CharField(
         max_length=2)  # 英语等级
     college = models.ForeignKey(
@@ -100,7 +100,7 @@ class StudentTable(models.Model):
 
 
 class TeacherTable(models.Model):
-    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    user = models.OneToOneField(User, on_delete=models.CASCADE,primary_key=True)
     position = models.CharField(
         max_length=10)  # 职位
     college = models.ForeignKey(
@@ -112,15 +112,18 @@ class CourseTable(models.Model):  # 课程表(默认学分4，学时40)
     course_id = models.CharField(max_length=10, primary_key=True)  # 课号
     course_name = models.CharField(max_length=20)  # 课名
     credit = models.IntegerField(default=4)  # 学分
+
+    
+class OpenTable(models.Model):  # 开课表
+    course = models.ForeignKey(CourseTable, on_delete=models.CASCADE)  # 课号
     teacher = models.ForeignKey(
         TeacherTable, on_delete=models.CASCADE)  # 工号
-
-
-class OpenTable(models.Model):  # 开课表
-    open_id = models.IntegerField(primary_key=True)  # 开课标识号
-    course = models.ForeignKey(CourseTable, on_delete=models.CASCADE)  # 课号
     semaster = models.CharField(max_length=20)  # 学期
     course_time = models.CharField(max_length=20)  # 上课时间
+    class Meta:
+        unique_together=("course","teacher","semaster")
+    
+
 
 
 class ScoreTable(models.Model):  # 选课表
@@ -129,3 +132,5 @@ class ScoreTable(models.Model):  # 选课表
     open = models.ForeignKey(
         OpenTable, on_delete=models.CASCADE)  # 开课标识号
     score = models.FloatField(blank=True)  # 最终成绩
+    class Meta:
+        unique_together=("student","open")

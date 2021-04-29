@@ -4,6 +4,23 @@ import Model.models as md
 
 
 # 序列化
+
+class SuperUserSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = md.User
+        fields = ['user_id', 'user_name', 'password', 'is_admin']
+
+    def create(self, validated_data):
+        instance = md.User.objects.create_superuser(**validated_data)
+        return instance
+
+    def update(self, instance, validated_data):
+        instance.user_name = validated_data.get('user_name')
+        instance.set_password(validated_data.get('password'))
+        instance.save()
+
+        return instance
+
 class CollegeSerializer(serializers.ModelSerializer):
     class Meta:
         model = md.CollegeTable
@@ -39,13 +56,15 @@ class StudentSerializer(serializers.ModelSerializer):
             user_data = validated_data.pop("user")
             user = instance.user
             user.user_name = user_data.get('user_name', user.user_name)
-            user.set_password(user_data.get('user_name', user.user_name))
+            user.set_password(user_data.get('password', user.password))
             user.save()
+        if validated_data.get('college', instance.college):
+            instance.college = md.CollegeTable(
+                **validated_data.get('college', instance.college))
+        if validated_data.get('English_class', instance.English_class):
+            instance.English_class = validated_data.get(
+                'English_class', instance.English_class)
 
-        instance.English_class = validated_data.get(
-            'English_class', instance.English_class)
-        instance.college = md.CollegeTable(
-            **validated_data.get('college', instance.college))
         instance.save()
 
         return instance
@@ -86,24 +105,20 @@ class TeacherSerializer(serializers.ModelSerializer):
 
 
 class CourseSerializer(serializers.ModelSerializer):
-    teacher = serializers.CharField(source='teacher.user')
 
     class Meta:
         model = md.CourseTable
-        fields = ['course_id', 'course_name', 'credit', 'teacher']
+        fields = ['course_id', 'course_name', 'credit']
 
 
 class OpenSerializer(serializers.ModelSerializer):
-    course = serializers.CharField(source='course.course_id')
 
     class Meta:
         model = md.OpenTable
-        fields = ['open_id', 'course', 'semaster', 'course_time']
+        fields = ['id','course', 'teacher', 'semaster', 'course_time']
 
 
 class ScoreSerializer(serializers.ModelSerializer):
-    student = serializers.CharField(source='student.user')
-    open = serializers.CharField(source='open.open_id')
 
     class Meta:
         model = md.ScoreTable

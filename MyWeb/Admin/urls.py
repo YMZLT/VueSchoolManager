@@ -1,17 +1,33 @@
-from django.urls import path
+from django.urls import path,re_path
 from . import views
 
 urlpatterns = [
-    path('college', views.College_list),
-    path('college/<str:college_id>', views.College_detail),
-    path('student', views.Student_list),
-    path('student/<str:student_id>', views.Student_detail),
-    path('teacher', views.Teacher_list),
-    path('teacher/<str:teacher_id>', views.Teacher_detail),
-    path('course', views.Course_list),
-    path('course/<str:course_id>', views.Course_detail),
-    path('open', views.Open_list),
-    path('open/<str:open_id>', views.Open_detail),
-    path('score', views.Score_list),
-    path('score/<str:student_id>', views.Score_detail),
+    path('superuser/create/',views.SuperUser_create),
+    path('superuser/edit/<str:user_id>', views.SuperUser_edit),
+    path('superuser/search/',views.SuperUser_search),
+
+    path('college/create/', views.College_create),
+    path('college/edit/<str:college_id>', views.College_edit),
+    path('college/search/', views.College_search),
+
+    path('student/create/', views.Student_create),
+    path('student/edit/<str:student_id>', views.Student_edit),
+    path('student/search/', views.Student_search),
+
+    path('teacher/create/', views.Teacher_create),
+    path('teacher/edit/<str:teacher_id>', views.Teacher_edit),
+    path('teacher/search/', views.Teacher_search),
+
+    path('course/create/', views.Course_create),
+    path('course/edit/<str:course_id>', views.Course_edit),
+    path('course/search/', views.Course_search),
+
+    path('open/create/', views.Open_create),
+    path('open/edit/<str:open_id>', views.Open_edit),
+    path('open/search/', views.Open_search),
+
+    path('score/create/', views.Score_create),
+    path('score/search/', views.Score_search),
+    path('score/delete/', views.Score_delete),
+    path('score/edit/', views.Score_edit),
 ]

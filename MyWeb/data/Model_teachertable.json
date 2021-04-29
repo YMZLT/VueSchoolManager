@@ -1,0 +1,128 @@
+[
+    {
+        "user": {
+            "user_id": "1001",
+            "user_name": "teacher1",
+            "password": "12345678"
+        },
+        "position": "教授",
+        "college": "1"
+    },
+    {
+        "user": {
+            "user_id": "1002",
+            "user_name": "teacher2",
+            "password": "12345678"
+        },
+        "position": "教授",
+        "college": "2"
+    },
+    {
+        "user": {
+            "user_id": "1003",
+            "user_name": "teacher3",
+            "password": "12345678"
+        },
+        "position": "教授",
+        "college": "3"
+    },
+    {
+        "user": {
+            "user_id": "1004",
+            "user_name": "teacher4",
+            "password": "12345678"
+        },
+        "position": "副教授",
+        "college": "4"
+    },
+    {
+        "user": {
+            "user_id": "1005",
+            "user_name": "teacher5",
+            "password": "12345678"
+        },
+        "position": "院长",
+        "college": "7"
+    },
+    {
+        "user": {
+            "user_id": "1006",
+            "user_name": "teacher6",
+            "password": "12345678"
+        },
+        "position": "教授",
+        "college": "5"
+    },
+    {
+        "user": {
+            "user_id": "1007",
+            "user_name": "teacher7",
+            "password": "12345678"
+        },
+        "position": "讲师",
+        "college": "1"
+    },
+    {
+        "user": {
+            "user_id": "1008",
+            "user_name": "teacher8",
+            "password": "12345678"
+        },
+        "position": "教授",
+        "college": "2"
+    },
+    {
+        "user": {
+            "user_id": "1009",
+            "user_name": "teacher9",
+            "password": "12345678"
+        },
+        "position": "教授",
+        "college": "2"
+    },
+    {
+        "user": {
+            "user_id": "1010",
+            "user_name": "teacher10",
+            "password": "12345678"
+        },
+        "position": "教授",
+        "college": "1"
+    },
+    {
+        "user": {
+            "user_id": "1011",
+            "user_name": "teacher11",
+            "password": "12345678"
+        },
+        "position": "讲师",
+        "college": "11"
+    },
+    {
+        "user": {
+            "user_id": "1012",
+            "user_name": "teacher12",
+            "password": "12345678"
+        },
+        "position": "副教授",
+        "college": "10"
+    },
+    {
+        "user": {
+            "user_id": "1013",
+            "user_name": "teacher13",
+            "password": "12345678"
+        },
+        "position": "讲师",
+        "college": "9"
+    },
+    {
+        "user": {
+            "user_id": "1014",
+            "user_name": "teacher14",
+            "password": "12345678"
+        },
+        "position": "讲师",
+        "college": "8"
+    }
+]
