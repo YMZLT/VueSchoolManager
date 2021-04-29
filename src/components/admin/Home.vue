@@ -3,7 +3,7 @@
     <!-- 头部区域 -->
     <el-header>
       <div>
-        <img src="../assets/system.png" alt="" />
+        <img src="../../assets/system.png" alt="" />
         <span>上海大学教务管理系统</span>
       </div>
       <el-button type="info" @click="logout">退出</el-button>

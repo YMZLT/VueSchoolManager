@@ -17,10 +17,6 @@ const router = new Router({
       redirect: 'welcome',
       children: [
         { path: '/welcome', component: Welcome },
-        { path: '/users', component: Users },
-        { path: '/students', component: Students },
-        { path: '/teachers', component: Teachers },
-        { path: '/courses', component: Courses },
       ]
     },
   ]
