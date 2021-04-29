@@ -97,7 +97,6 @@ export default {
         if (res.data.user_type == 'S') this.$router.push('/student/home')
         // 跳转到教师页面
         if (res.data.user_type == 'T') this.$router.push('/teacher/home')
-        return this.$message.error('登录失败')
       })
     },
   },
