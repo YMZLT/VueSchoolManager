@@ -55,23 +55,25 @@
       <el-table :data="OpenListShow" border stripe>
         <!-- 自定义索引 -->
         <el-table-column type="index"> </el-table-column>
-        <el-table-column prop="Open_id" label="开课号"></el-table-column>
-        <el-table-column prop="Open_name" label="开课名"></el-table-column>
-        <el-table-column prop="credit" label="学分"></el-table-column>
+        <!-- <el-table-column prop="id" label="开课号"></el-table-column> -->
+        <el-table-column prop="course" label="课程号"></el-table-column>
+        <el-table-column prop="teacher" label="教师号"></el-table-column>
+        <el-table-column prop="semaster" label="学期"></el-table-column>
+        <el-table-column prop="course_time" label="上课时间"></el-table-column>
         <el-table-column label="操作">
           <template slot-scope="scope">
             <el-button
               type="primary"
               icon="el-icon-edit"
               size="mini"
-              @click="showEditDialog(scope.row.Open_id)"
+              @click="showEditDialog(scope.row)"
             >
             </el-button>
             <el-button
               type="danger"
               icon="el-icon-delete"
               size="mini"
-              @click="deleteOpen(scope.row.Open_id)"
+              @click="deleteOpen(scope.row)"
             >
             </el-button>
           </template>
@@ -104,24 +106,31 @@
         ref="addFormRef"
         label-width="90px"
       >
-        <el-form-item label="开课号" prop="Open_id">
+        <el-form-item label="课程号" prop="course">
           <el-input
-            v-model="addForm.Open_id"
-            placeholder="请输入开课号"
+            v-model="addForm.course"
+            placeholder="请输入课程号"
             clearable
           ></el-input>
         </el-form-item>
-        <el-form-item label="开课名" prop="Open_name">
+        <el-form-item label="教师号" prop="teacher">
           <el-input
-            v-model="addForm.Open_name"
-            placeholder="请输入开课名"
+            v-model="addForm.teacher"
+            placeholder="请输入教师号"
             clearable
           ></el-input>
         </el-form-item>
-        <el-form-item label="学分" prop="credit">
+        <el-form-item label="学期" prop="semaster">
           <el-input
-            v-model.number="addForm.credit"
-            placeholder="请输入学分"
+            v-model="addForm.semaster"
+            placeholder="请输入学期"
+            clearable
+          ></el-input>
+        </el-form-item>
+        <el-form-item label="上课时间" prop="course_time">
+          <el-input
+            v-model="addForm.course_time"
+            placeholder="请输入上课时间"
             clearable
           ></el-input>
         </el-form-item>
@@ -146,20 +155,27 @@
         ref="editFormRef"
         label-width="90px"
       >
-        <el-form-item label="开课号" prop="Open_id">
-          <el-input v-model="editForm.Open_id" disabled></el-input>
+        <el-form-item label="课程号" prop="course">
+          <el-input v-model="editForm.course" disabled></el-input>
         </el-form-item>
-        <el-form-item label="开课名" prop="Open_name">
+        <el-form-item label="教师号" prop="teacher">
           <el-input
-            v-model.number="editForm.Open_name"
-            placeholder="请输入开课名"
+            v-model="editForm.teacher"
+            placeholder="请输入教师号"
+            disabled
+          ></el-input>
+        </el-form-item>
+        <el-form-item label="学期" prop="semaster">
+          <el-input
+            v-model="editForm.semaster"
+            placeholder="请输入学期"
             clearable
           ></el-input>
         </el-form-item>
-         <el-form-item label="学分" prop="credit">
+        <el-form-item label="上课时间" prop="course_time">
           <el-input
-            v-model.number="editForm.credit"
-            placeholder="请输入学分"
+            v-model="editForm.course_time"
+            placeholder="请输入上课时间"
             clearable
           ></el-input>
         </el-form-item>
@@ -178,19 +194,23 @@ export default {
     return {
       options: [
         {
-          value: '开课号',
-          label: '开课号',
+          value: '课程号',
+          label: '课程号',
         },
         {
-          value: '开课名',
-          label: '开课名',
+          value: '教师号',
+          label: '教师号',
         },
         {
-          value: '学分',
-          label: '学分',
+          value: '学期',
+          label: '学期',
+        },
+        {
+          value: '上课时间',
+          label: '上课时间',
         },
       ],
-      selected: '开课号', // 搜索选择
+      selected: '课程号', // 搜索选择
       input: '', // 搜索输入框
       OpenList: [], // 开课列表
       OpenListShow: [], // 展示的开课列表
@@ -201,63 +221,52 @@ export default {
       addDialogVisible: false,
       // 添加开课的表单数据
       addForm: {
-        Open_id: '',
-        Open_name: '',
-        credit: 0,
+        course: '',
+        teacher: '',
+        semaster: '',
+        course_time: '',
       },
       // 添加表单的验证规则
       addFormRules: {
-        Open_id: [
-          { required: true, message: '请输入开课号', trigger: 'blur' },
+        course: [
+          { required: true, message: '请输入课程号', trigger: 'blur' },
           {
             min: 2,
             max: 6,
-            message: '开课名长度在2~6个数字之间',
+            message: '课程号长度在2~6个数字之间',
             trigger: 'blur',
           },
         ],
-        Open_name: [
-          { required: true, message: '请输入开课名', trigger: 'blur' },
+        teacher: [
+          { required: true, message: '请输入教师号', trigger: 'blur' },
           {
-            min: 3,
-            max: 20,
-            message: '开课名长度在3~20个字符之间',
+            min: 4,
+            max: 4,
+            message: '工号长度为4个字符',
             trigger: 'blur',
           },
         ],
-        credit: [
-          { required: true, message: '请输入学分', trigger: 'blur' },
-          {
-            type: 'number',
-            message: '学分为数字',
-            trigger: 'blur',
-          },
+        semaster: [{ required: true, message: '请输入学期', trigger: 'blur' }],
+        course_time: [
+          { required: true, message: '请输入上课时间', trigger: 'blur' },
         ],
       },
       // 控制修改对话框显示与隐藏
       editDialogVisible: false,
       // 查询到的开课信息
-      editForm: {},
+      editForm: {
+        semaster: '',
+        course_time: '',
+      },
       // 修改表单的验证规则
       editFormRules: {
-        Open_name: [
-          { required: false, message: '请输入开课名', trigger: 'blur' },
-          {
-            min: 3,
-            max: 20,
-            message: '开课名长度在3~20个字符之间',
-            trigger: 'blur',
-          },
-        ],
-        credit: [
-          { required: false, message: '请输入学分', trigger: 'blur' },
-          {
-            type: 'number',
-            message: '学分为数字',
-            trigger: 'blur',
-          },
+        semaster: [{ required: false, message: '请输入学期', trigger: 'blur' }],
+        course_time: [
+          { required: false, message: '请输入上课时间', trigger: 'blur' },
         ],
       },
+      // 学期转换
+      semesterMap: ['春', '夏', '秋', '冬'],
     }
   },
   created() {
@@ -268,26 +277,33 @@ export default {
     async getOpenList(search) {
       var query = {}
       if (search) {
-        if (this.selected === '开课号') {
-          query = { Open_id: this.input }
-        } else if (this.selected === '开课名') {
-          query = { Open_name: this.input }
-        } else if (this.selected === '学分') {
-          query = { credit: this.input }
+        if (this.selected === '课程号') {
+          query = { course: this.input }
+        } else if (this.selected === '教师号') {
+          query = { teacher: this.input }
+        } else if (this.selected === '学期') {
+          query = { semaster: this.input }
+        } else if (this.selected === '上课时间') {
+          query = { course_time: this.input }
         }
       }
-      const { data: res } = await this.$http.get('admin/Open/search/', {
+      const { data: res } = await this.$http.get('admin/open/search/', {
         params: query,
       })
+      console.log(res)
       if (res.status !== 200) return this.$message.error('获取开课列表失败')
+      await res.data.Opens.forEach((element) => {
+        var str = element.semaster
+        var year = str.slice(0, 4)
+        var sem = this.semesterMap[Number(str.slice(5)) - 1]
+        element.semaster = year + '年' + sem + '季学期'
+      })
       this.OpenList = res.data.Opens
       this.total = res.data.total
-
       this.currentPage = 1
       var start = 0
       var end = start + this.pageSize
       this.OpenListShow = res.data.Opens.slice(start, end)
-      console.log(res)
     },
     // 监听对话框关闭事件
     addDialogClosed() {
@@ -299,7 +315,7 @@ export default {
       this.$refs.addFormRef.validate(async (valid) => {
         if (!valid) return
         // 校验正确则发起请求
-        const { data: res } = await this.$http.post('admin/Open/create/', [
+        const { data: res } = await this.$http.post('admin/open/create/', [
           this.addForm,
         ])
         if (res.status === 200) this.$message.success('添加成功！')
@@ -309,14 +325,14 @@ export default {
         this.getOpenList()
       })
     },
-    // 根据开课号开课信息
-    async showEditDialog(id) {
-      console.log(id)
+    // 根据开课号查询开课信息
+    async showEditDialog(row) {
+      console.log(row)
       this.editDialogVisible = true
-      const { data: res } = await this.$http.get('admin/Open/search/', {
-        params: { Open_id: id },
+      const { data: res } = await this.$http.get('admin/open/search/', {
+        params: { course: row.course, teacher: row.teacher },
       })
-      if (res.status !== 200) return this.$message.error('获取开课列表失败')
+      if (res.status !== 200) return this.$message.error('获取开课信息失败')
       this.editForm = res.data.Opens[0]
       //   console.log(res)
     },
@@ -331,10 +347,10 @@ export default {
         if (!valid) return
         // 校验正确则发起请求
         const { data: res } = await this.$http.put(
-          'admin/Open/edit/' + this.editForm.Open_id,
+          'admin/open/edit/' + this.editForm.id,
           {
-            Open_name: this.editForm.Open_name,
-            credit: this.editForm.credit,
+            course_time: this.editForm.course_time,
+            semaster: this.editForm.semaster,
           }
         )
         if (res.status !== 200)
@@ -346,7 +362,7 @@ export default {
       })
     },
     // 删除开课
-    deleteOpen(id) {
+    deleteOpen(row) {
       // 弹框提示
       this.$confirm('此操作将永久删除该开课, 是否继续?', '提示', {
         confirmButtonText: '确定',
@@ -355,9 +371,7 @@ export default {
       })
         .then(async () => {
           // 确定删除
-          const { data: res } = await this.$http.delete(
-            'admin/Open/edit/' + id
-          )
+          const { data: res } = await this.$http.delete('admin/open/edit/' + row.id)
           if (res.status != 200)
             return this.$message({
               type: 'error',

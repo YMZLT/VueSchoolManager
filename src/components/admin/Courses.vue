@@ -212,7 +212,7 @@ export default {
           {
             min: 2,
             max: 6,
-            message: '课程名长度在2~6个数字之间',
+            message: '课程号长度在2~6个数字之间',
             trigger: 'blur',
           },
         ],
