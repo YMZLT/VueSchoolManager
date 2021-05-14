@@ -1,6 +1,6 @@
 from django.db import models
 from rest_framework import fields, serializers
-import Model.models as md
+from . import models as md
 
 
 # 序列化
@@ -112,14 +112,27 @@ class CourseSerializer(serializers.ModelSerializer):
 
 
 class OpenSerializer(serializers.ModelSerializer):
-
     class Meta:
         model = md.OpenTable
-        fields = ['id','course', 'teacher', 'semaster', 'course_time']
+        fields = ['id','course', 'teacher', 'semester', 'course_time']
 
+class OpenDetailSerializer(serializers.ModelSerializer):
+    course = CourseSerializer()
+    teacher = TeacherSerializer()
+    class Meta:
+        model = md.OpenTable
+        fields = ['id','course', 'teacher', 'semester', 'course_time']
 
 class ScoreSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = md.ScoreTable
         fields = ['student', 'open', 'score']
+
+
+class ScoreDetailSerializer(serializers.ModelSerializer):
+    student = StudentSerializer()
+    open = OpenDetailSerializer()
+    class Meta:
+        model = md.ScoreTable
+        fields = ['student','open','score']

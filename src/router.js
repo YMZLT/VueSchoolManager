@@ -10,6 +10,8 @@ import Teachers from './components/admin/Teachers.vue'
 import Colleges from './components/admin/Colleges.vue'
 import Courses from './components/admin/Courses.vue'
 import Opens from './components/admin/Opens.vue'
+import Selections from './components/admin/Selections.vue'
+import Scores from './components/admin/Scores.vue'
 
 // 学生页面
 import Home_student from './components/student/Home.vue'
@@ -40,6 +42,8 @@ const router = new Router({
         { path: '/admin/colleges', component: Colleges },
         { path: '/admin/courses', component: Courses },
         { path: '/admin/opens', component: Opens },
+        { path: '/admin/selections', component: Selections },
+        { path: '/admin/scores', component: Scores },
       ]
     },
     
