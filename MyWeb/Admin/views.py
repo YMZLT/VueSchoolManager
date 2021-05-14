@@ -778,8 +778,9 @@ def Score_search_detail(request):
     
      
     try:
+        Score_instance = md.ScoreTable.objects.all()
         if "student" in query:
-            Score_instance = md.ScoreTable.objects.filter(student=query["student"])
+            Score_instance = Score_instance.filter(student=query["student"])
         if "open" in query:
             Score_instance = Score_instance.filter(open=query["open"])
         if "teacher" in query:
