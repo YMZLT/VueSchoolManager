@@ -9,5 +9,5 @@ urlpatterns = [
     path('score/search/', views.Score_search),
     path('score/delete/', views.Score_delete),
 
-    path('course/search/', views.Course_search),
+    path('open/search/', views.Open_search),
 ]

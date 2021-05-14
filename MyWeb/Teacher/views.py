@@ -97,7 +97,7 @@ def Teacher_edit(request, format=None):
 
 @api_view(['GET'])
 def Score_search(request):
-    """按条件查询选课信息
+    """按条件查询选课详细信息
 
     Args:
         request: 请求
@@ -105,10 +105,25 @@ def Score_search(request):
     Returns:
         data: 返回错误信息或正确的数据
     """
+    # 根据学号和学期查询选课信息
     # request.query_params返回解析之后的查询字符串数据
     query = request.query_params.dict()  # 变成字典
+     
     try:
-        Score_instance = md.ScoreTable.objects.filter(**query)
+        if "teacher" in query:
+            Score_instance = md.ScoreTable.objects.filter(open__teacher=query["teacher"])
+        if "student" in query:
+            Score_instance = Score_instance.filter(student=query["student"])
+        if "open" in query:
+            Score_instance = Score_instance.filter(open=query["open"])
+        if "semester" in query:
+            Score_instance = Score_instance.filter(open__semester=query["semester"])
+        if "semester" in query:
+            Score_instance = Score_instance.filter(open__semester=query["semester"])
+        if "course" in query:
+            Score_instance = Score_instance.filter(open__course=query["course"])
+        if "course_time" in query:
+            Score_instance = Score_instance.filter(open__course_time=query["course_time"])
     except md.ScoreTable.DoesNotExist:
         data = {
             'msg': 'error',
@@ -116,7 +131,7 @@ def Score_search(request):
             'detail': '数据不存在！'
         }
         return Response(data)
-    serializer = serializers.ScoreSerializer(Score_instance, many=True)
+    serializer = serializers.ScoreDetailSerializer(Score_instance, many=True)
     data = {
         'data': {
             'Scores': serializer.data,
@@ -126,7 +141,6 @@ def Score_search(request):
         'status': 200
     }
     return Response(data)
-
 
 @api_view(['PUT'])
 def Score_edit(request, format=None):
@@ -169,7 +183,7 @@ def Score_edit(request, format=None):
 
 @api_view(['GET'])
 def Open_search(request):
-    """按条件查询开课信息
+    """按条件查询开课详细信息
 
     Args:
         request: 请求
@@ -188,7 +202,7 @@ def Open_search(request):
             'detail': '数据不存在！'
         }
         return Response(data)
-    serializer = serializers.OpenSerializer(Open_instance, many=True)
+    serializer = serializers.OpenDetailSerializer(Open_instance, many=True)
     data = {
         'data': {
             'Opens': serializer.data,
