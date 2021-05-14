@@ -120,10 +120,10 @@ class OpenTable(models.Model):  # 开课表
     course = models.ForeignKey(CourseTable, on_delete=models.CASCADE)  # 课号
     teacher = models.ForeignKey(
         TeacherTable, on_delete=models.CASCADE)  # 工号
-    semaster = models.CharField(max_length=20)  # 学期
+    semester = models.CharField(max_length=20)  # 学期
     course_time = models.CharField(max_length=20)  # 上课时间
     class Meta:
-        unique_together=("course","teacher","semaster")
+        unique_together=("course","teacher","semester")
     
 
 
@@ -133,6 +133,6 @@ class ScoreTable(models.Model):  # 选课表
         StudentTable, on_delete=models.CASCADE)  # 学号
     open = models.ForeignKey(
         OpenTable, on_delete=models.CASCADE)  # 开课标识号
-    score = models.FloatField(blank=True)  # 最终成绩
+    score = models.FloatField(default=0)  # 最终成绩
     class Meta:
         unique_together=("student","open")

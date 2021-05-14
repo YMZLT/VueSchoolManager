@@ -668,6 +668,37 @@ def Open_search(request):
         'status': 200
     }
     return Response(data)
+@api_view(['GET'])
+def Open_search_detail(request):
+    """按条件查询开课详细信息
+
+    Args:
+        request: 请求
+
+    Returns:
+        data: 返回错误信息或正确的数据
+    """
+    # request.query_params返回解析之后的查询字符串数据
+    query = request.query_params.dict()  # 变成字典
+    try:
+        Open_instance = md.OpenTable.objects.filter(**query)
+    except md.OpenTable.DoesNotExist:
+        data = {
+            'msg': 'error',
+            'status': 400,
+            'detail': '数据不存在！'
+        }
+        return Response(data)
+    serializer = serializers.OpenDetailSerializer(Open_instance, many=True)
+    data = {
+        'data': {
+            'Opens': serializer.data,
+            'total': len(serializer.data)
+        },
+        'msg': 'success',
+        'status': 200
+    }
+    return Response(data)
 
 # 成绩/选课数据接口
 
@@ -680,7 +711,7 @@ def Score_create(request, format=None):
 
     if request.method == 'POST':
         serializer = serializers.ScoreSerializer(
-            data=request.data, many=True)
+            data=request.data, many=True,partial=True)
         if serializer.is_valid():
             serializer.save()
             data = {
@@ -730,8 +761,55 @@ def Score_search(request):
         'status': 200
     }
     return Response(data)
+    
+@api_view(['GET'])
+def Score_search_detail(request):
+    """按条件查询选课详细信息
 
+    Args:
+        request: 请求
 
+    Returns:
+        data: 返回错误信息或正确的数据
+    """
+    # 根据学号和学期查询选课信息
+    # request.query_params返回解析之后的查询字符串数据
+    query = request.query_params.dict()  # 变成字典
+    
+     
+    try:
+        Score_instance = md.ScoreTable.objects.all()
+        if "student" in query:
+            Score_instance = Score_instance.filter(student=query["student"])
+        if "open" in query:
+            Score_instance = Score_instance.filter(open=query["open"])
+        if "teacher" in query:
+            Score_instance = Score_instance.filter(open__teacher=query["teacher"])
+        if "semester" in query:
+            Score_instance = Score_instance.filter(open__semester=query["semester"])
+        if "semester" in query:
+            Score_instance = Score_instance.filter(open__semester=query["semester"])
+        if "course" in query:
+            Score_instance = Score_instance.filter(open__course=query["course"])
+        if "course_time" in query:
+            Score_instance = Score_instance.filter(open__course_time=query["course_time"])
+    except md.ScoreTable.DoesNotExist:
+        data = {
+            'msg': 'error',
+            'status': 400,
+            'detail': '数据不存在！'
+        }
+        return Response(data)
+    serializer = serializers.ScoreDetailSerializer(Score_instance, many=True)
+    data = {
+        'data': {
+            'Scores': serializer.data,
+            'total': len(serializer.data)
+        },
+        'msg': 'success',
+        'status': 200
+    }
+    return Response(data)
 @api_view(['DELETE'])
 def Score_delete(request):
     """删除选课信息

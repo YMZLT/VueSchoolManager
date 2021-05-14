@@ -1,13 +1,22 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 import Login from './components/Login.vue'
-
+// 管理员页面
 import Home_admin from './components/admin/Home.vue'
 import Welcome_admin from './components/admin/Welcome.vue'
 import Admins from './components/admin/Admins.vue'
+import Students from './components/admin/Students.vue'
+import Teachers from './components/admin/Teachers.vue'
+import Colleges from './components/admin/Colleges.vue'
+import Courses from './components/admin/Courses.vue'
+import Opens from './components/admin/Opens.vue'
+import Selections from './components/admin/Selections.vue'
+import Scores from './components/admin/Scores.vue'
 
+// 学生页面
 import Home_student from './components/student/Home.vue'
 import Welcome_student from './components/student/Welcome.vue'
+// 教师页面
 import Home_teacher from './components/teacher/Home.vue'
 import Welcome_teacher from './components/teacher/Welcome.vue'
 
@@ -28,6 +37,13 @@ const router = new Router({
       children: [
         { path: '/admin/welcome', component: Welcome_admin },
         { path: '/admin/admins', component: Admins },
+        { path: '/admin/students', component: Students },
+        { path: '/admin/teachers', component: Teachers },
+        { path: '/admin/colleges', component: Colleges },
+        { path: '/admin/courses', component: Courses },
+        { path: '/admin/opens', component: Opens },
+        { path: '/admin/selections', component: Selections },
+        { path: '/admin/scores', component: Scores },
       ]
     },
     

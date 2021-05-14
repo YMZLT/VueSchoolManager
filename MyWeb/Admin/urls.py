@@ -25,9 +25,11 @@ urlpatterns = [
     path('open/create/', views.Open_create),
     path('open/edit/<str:open_id>', views.Open_edit),
     path('open/search/', views.Open_search),
+    path('open/search_detail/', views.Open_search_detail),
 
     path('score/create/', views.Score_create),
     path('score/search/', views.Score_search),
+    path('score/search_detail/', views.Score_search_detail),
     path('score/delete/', views.Score_delete),
     path('score/edit/', views.Score_edit),
 ]
