@@ -97,7 +97,7 @@
       @close="addDialogClosed"
     >
       <!-- 内容主题区域 -->
-      <el-form
+      <el-form label-position="left"
         :model="addForm"
         :rules="addFormRules"
         ref="addFormRef"
@@ -132,7 +132,7 @@
       @close="editDialogClosed"
     >
       <!-- 内容主题区域 -->
-      <el-form
+      <el-form label-position="left"
         :model="editForm"
         :rules="editFormRules"
         ref="editFormRef"
@@ -190,8 +190,8 @@ export default {
         college_id: [
           { required: true, message: '请输入院系号', trigger: 'blur' },
           {
-            type: 'number',
-            message: '院系号为数字',
+            pattern: /^CL[0-9]{2}$/,
+            message: '院系号不合法',
             trigger: 'blur',
           },
         ],

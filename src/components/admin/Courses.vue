@@ -92,13 +92,13 @@
     </el-card>
     <!-- 添加课程对话框 -->
     <el-dialog
-      title="添加课程"
+      title="添加课程" 
       :visible.sync="addDialogVisible"
       width="50%"
       @close="addDialogClosed"
     >
       <!-- 内容主题区域 -->
-      <el-form
+      <el-form label-position="left"
         :model="addForm"
         :rules="addFormRules"
         ref="addFormRef"
@@ -140,7 +140,7 @@
       @close="editDialogClosed"
     >
       <!-- 内容主题区域 -->
-      <el-form
+      <el-form label-position="left"
         :model="editForm"
         :rules="editFormRules"
         ref="editFormRef"

@@ -100,7 +100,7 @@
       @close="addDialogClosed"
     >
       <!-- 内容主题区域 -->
-      <el-form
+      <el-form label-position="left"
         :model="addForm"
         :rules="addFormRules"
         ref="addFormRef"
@@ -139,8 +139,8 @@
             </el-option>
           </el-select>
         </el-form-item>
-        <el-form-item label="院系号" prop="college">
-          <el-select v-model="addForm.college" placeholder="请选择院系号">
+        <el-form-item label="院系" prop="college">
+          <el-select v-model="addForm.college" placeholder="请选择院系">
             <el-option
               v-for="item in collegeList"
               :key="item.college_id"
@@ -164,8 +164,8 @@
       width="50%"
       @close="editDialogClosed"
     >
-      <!-- 内容主题区域 -->
-      <el-form
+      <!-- 内容主题区域 --> 
+      <el-form label-position="left"
         :model="editForm"
         :rules="editFormRules"
         ref="editFormRef"
@@ -192,8 +192,8 @@
             </el-option>
           </el-select>
         </el-form-item>
-        <el-form-item label="院系号" prop="college">
-          <el-select v-model="editForm.college" placeholder="请选择院系号">
+        <el-form-item label="院系" prop="college">
+          <el-select v-model="editForm.college" placeholder="请选择院系">
             <el-option
               v-for="item in collegeList"
               :key="item.college_id"
