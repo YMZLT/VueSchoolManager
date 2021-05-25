@@ -64,7 +64,7 @@ npm run build
     - password: 12345678
 
 - 学生账号：
-    - user_id : 00000001
+    - user_id : 18122801
     - password: 12345678
 
 ## 文件说明
