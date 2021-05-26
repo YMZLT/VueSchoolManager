@@ -25,7 +25,6 @@ class IsTeacher(BasePermission):
             return False
         return True
 
-
 class TeacherView(APIView):
     '''教师用户'''
     permission_classes = (IsAuthenticated, IsTeacher,)
@@ -115,11 +114,10 @@ class Score_search(TeacherView):
     """按条件查询选课详细信息
     """
     def get(self,request):
-        user = request.user
         query = request.query_params.dict()  # 变成字典
-        
         try:
-            Score_instance = md.ScoreTable.objects.filter(open__teacher=user.user_id)
+            if "teacher" in query:
+                Score_instance = md.ScoreTable.objects.filter(open__teacher=query["teacher"])
             if "student" in query:
                 Score_instance = Score_instance.filter(student=query["student"])
             if "open" in query:
