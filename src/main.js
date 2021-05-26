@@ -12,7 +12,7 @@ axios.defaults.baseURL = 'http://127.0.0.1:8001/'
 // 请求拦截器
 axios.interceptors.request.use(config=>{
   // console.log(config)
-  config.headers.Authorization = window.sessionStorage.getItem('token')
+  config.headers.authorization = 'jwt '+window.sessionStorage.getItem('token')
   return config
 })
 // 挂载到vue

@@ -18,6 +18,11 @@ import ScoresAnalysis from './components/admin/ScoresAnalysis.vue'
 // 学生页面
 import Home_student from './components/student/Home.vue'
 import Welcome_student from './components/student/Welcome.vue'
+import Courses_Info from './components/student/Courses.vue'
+import Select from './components/student/Select.vue'
+import Analysis from './components/student/Analysis.vue'
+
+
 // 教师页面
 import Home_teacher from './components/teacher/Home.vue'
 import Welcome_teacher from './components/teacher/Welcome.vue'
@@ -57,6 +62,9 @@ const router = new Router({
       redirect: '/student/welcome',
       children: [
         { path: '/student/welcome', component: Welcome_student },
+        { path: '/student/courses', component: Courses_Info },
+        { path: '/student/select', component: Select },
+        { path: '/student/Analysis', component: Analysis },
       ]
     },
     {

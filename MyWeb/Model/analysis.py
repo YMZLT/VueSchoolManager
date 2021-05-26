@@ -46,6 +46,17 @@ class Analysis():
         score_distribution_dict = score_distribution.to_dict(orient='split')
         return score_distribution_dict
 
+    def getAvgScore(self,student_id):
+        # 学生平均成绩变化
+        query = '''
+                SELECT O.semester,AVG(score) as avg_score
+                FROM ScoreTable as S,OpenTable as O
+                where student_id = {0} and O.id = S.open_id
+                group by O.semester
+                '''.format(student_id)
+        Avg_table = pd.read_sql_query(query, self.engine)
+        return Avg_table.round(2)
+
 
 
 

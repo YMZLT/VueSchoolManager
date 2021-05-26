@@ -89,8 +89,8 @@ class User(AbstractBaseUser):
     #  用命令 createsuperuser 添加用户时,user_type,user_name 是需要提示用户填写的内容
     REQUIRED_FIELDS = ['user_name']
 
-    def __str__(self):
-        return self.user_id
+    # def __str__(self):
+    #     return self.user_id
     class Meta:
         db_table="User"
 
@@ -104,6 +104,7 @@ class StudentTable(models.Model):
     objects = StudentManager()
     class Meta:
         db_table="StudentTable"
+    
 
 
 class TeacherTable(models.Model):
