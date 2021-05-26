@@ -878,3 +878,25 @@ def Score_edit(request, format=None):
             'detail': serializer.errors
         }
         return Response(data)
+
+from .analysis import Analysis
+@api_view(['GET'])
+def Score_Analysis(request,semester):
+    """按学期查询成绩的参数分布
+    Args:
+        request: 请求
+        semester：学期
+    Returns:
+        data: 返回错误信息或正确的数据
+    """
+    Al = Analysis()
+    basicData = Al.getBasicData(semester)
+    distribution = Al.getScoreDistribution(semester)
+    data = {
+        'basicData': basicData,
+        'distribution':distribution,
+        'msg': 'success',
+        'status': 200
+    }
+    return Response(data)
+

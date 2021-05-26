@@ -44,15 +44,11 @@ py manage.py runserver 8001
 npm install
 ```
 
-#### 编译
+#### 运行
 ```
 npm run serve
 ```
 
-#### 构建运行
-```
-npm run build
-```
 #### 账号说明
 
 - 管理员账号：
@@ -64,7 +60,7 @@ npm run build
     - password: 12345678
 
 - 学生账号：
-    - user_id : 00000001
+    - user_id : 18122801
     - password: 12345678
 
 ## 文件说明

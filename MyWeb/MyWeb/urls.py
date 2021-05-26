@@ -16,14 +16,14 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import include, path
 from Model import jwt
-from Model import view
+# from Model import view
 from rest_framework.documentation import include_docs_urls
 
 urlpatterns = [
     path('docs/', include_docs_urls(title='说明文档')),
     # jwt的token认证接口
     path('login/', jwt.obtain_jwt_token),
-    path('login/test/', view.Login),
+    # path('login/test/', view.Login),
     path('adminM/', admin.site.urls),
     path('student/',include('Student.urls')),
     path('teacher/',include('Teacher.urls')),

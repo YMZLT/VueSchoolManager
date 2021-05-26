@@ -11,7 +11,9 @@ import Colleges from './components/admin/Colleges.vue'
 import Courses from './components/admin/Courses.vue'
 import Opens from './components/admin/Opens.vue'
 import Selections from './components/admin/Selections.vue'
+import AddSelection from './components/admin/AddSelection.vue'
 import Scores from './components/admin/Scores.vue'
+import ScoresAnalysis from './components/admin/ScoresAnalysis.vue'
 
 // 学生页面
 import Home_student from './components/student/Home.vue'
@@ -43,7 +45,9 @@ const router = new Router({
         { path: '/admin/courses', component: Courses },
         { path: '/admin/opens', component: Opens },
         { path: '/admin/selections', component: Selections },
+        { path: '/admin/addSelection', component: AddSelection },
         { path: '/admin/scores', component: Scores },
+        { path: '/admin/scoresAnalysis', component: ScoresAnalysis },
       ]
     },
     

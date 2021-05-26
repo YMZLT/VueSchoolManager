@@ -85,7 +85,7 @@
       @close="addDialogClosed"
     >
       <!-- 内容主题区域 -->
-      <el-form
+      <el-form label-position="left"
         :model="addForm"
         :rules="addFormRules"
         ref="addFormRef"
@@ -128,7 +128,7 @@
       @close="editDialogClosed"
     >
       <!-- 内容主题区域 -->
-      <el-form
+      <el-form label-position="left"
         :model="editForm"
         :rules="editFormRules"
         ref="editFormRef"

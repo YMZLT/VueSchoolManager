@@ -47,6 +47,7 @@ INSTALLED_APPS = [
 ]
 # 配置提供一个引用自定义模型的值来覆盖默认的用户模型
 AUTH_USER_MODEL = 'Model.User'
+
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',

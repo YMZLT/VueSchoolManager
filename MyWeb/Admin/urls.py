@@ -32,4 +32,6 @@ urlpatterns = [
     path('score/search_detail/', views.Score_search_detail),
     path('score/delete/', views.Score_delete),
     path('score/edit/', views.Score_edit),
+
+    path('score/analysis/<str:semester>', views.Score_Analysis),
 ]
