@@ -227,6 +227,8 @@ export default {
       )
       if (res.status === 200) this.$message.success('添加成功！')
       else this.$message.error('添加失败！\n' + '已选过该课程')
+      // 更新选课列表
+      this.getSelectCourseList()
     },
     // 删除选课
     deleteScore(row) {
