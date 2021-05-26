@@ -11,4 +11,6 @@ urlpatterns = [
 
     path('open/search/', views.Open_search),
 
+    path('save_pdf/', views.Save_pdf)
+
 ]

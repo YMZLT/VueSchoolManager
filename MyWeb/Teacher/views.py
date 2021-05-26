@@ -8,6 +8,7 @@ from Model import models as md
 from Model import serializers
 
 
+
 @api_view(['GET'])
 def Teacher_info(request):
     """按学号查询教师信息
@@ -212,3 +213,25 @@ def Open_search(request):
         'status': 200
     }
     return Response(data)
+
+#上传教学大纲接口
+from rest_framework.viewsets import GenericViewSet
+# class BookInfoViewSet(GenericViewSet):
+	# 保存图片
+@api_view(['POST'])
+def Save_pdf(request):
+    file = request.FILES.get('file')
+    try:
+        # 构造文件保存路径
+        file_path = './teachingschedule/files/' + file.name
+        # 保存文件
+        with open(file_path, 'wb+') as f:
+            f.write(file.read())
+            f.close()
+        response = {'file': file.name, 'code': 200, 'msg': "添加成功"}
+    except:
+        response = {'file': '', 'code': 201, 'msg': "添加失败"}
+    return Response(response)
+
+
+

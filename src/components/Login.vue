@@ -45,8 +45,8 @@ export default {
       // 登录表单的数据
       // 教师
       loginForm: {
-        user_id: '9001',
-        password: 'admin123',
+        user_id: '1002',
+        password: '12345678',
       },
       // 表单验证规则对象
       loginFormRules: {
@@ -89,7 +89,8 @@ export default {
         if (res.status !== 200) return this.$message.error('登录失败')
         this.$message.success('登录成功')
         // 1.将登录成功之后的 token，保存到客户端的 sessionStorage
-        window.sessionStorage.setItem('token', res.data.token)
+          window.sessionStorage.setItem('token', res.data.token)
+          window.sessionStorage.setItem('user', res.data.user_id)
         // 2.通过编程式导航跳转到后台主页，路由地址
         // 跳转到管理员页面
         if (res.data.user_type == 'A') this.$router.push('/admin/home')
