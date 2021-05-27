@@ -20,7 +20,7 @@ class IsStudent(BasePermission):
 
     def has_permission(self, request, view):
         user = request.user
-        print(user.user_id)
+        # print(user.user_id)
         if not user:
             return False
         if not user.user_type == 'S':

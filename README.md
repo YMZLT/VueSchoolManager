@@ -8,11 +8,11 @@
 
 ## 运行方法
 
-### 下载文件
+### 1. 下载文件
 ```
 git clone https://gitee.com/wgjmcal/vue-school-manager
 ```
-### 运行后端
+### 2. 运行后端
 
 #### 进入MyWeb文件夹
 ```
@@ -32,10 +32,10 @@ py manage.py runserver 8001
 
 #### 查看API
 
-浏览器打开：http://127.0.0.1:8001/docs/
+[文档地址](https://documenter.getpostman.com/view/14310338/TzXwGeZ5)
 
 
-### 运行前端
+### 3. 运行前端
 
 **确保本地已经有node.js环境**
 
@@ -63,7 +63,48 @@ npm run serve
     - user_id : 18122801
     - password: 12345678
 
+## 其他
+
+### 修改数据库
+
+默认使用的是自带的sqlite数据库，使用mysql数据库需要重新配置一下。
+
+进入后端文件夹：`./MyWeb/MyWeb/`
+
+找到seetings.py文件，将数据库配置修改一下:
+
+```python
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.sqlite3',
+#         'NAME': BASE_DIR / 'db.sqlite3',
+#     }
+# }
+# 连接mysql数据库
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME':'schoolnew', # 数据库名称，需要实现建好
+        'USER':'root', # 数据库用户名
+        'PASSWORD':'Forget,88', # 数据库密码
+        'HOST':'123.60.31.182', # 数据库所在主机地址，如果是本机的话，用localhost
+        'PORT':'3306', # 数据库端口
+        'OPTIONS': {
+            'init_command': 'SET foreign_key_checks = 0;', # 初始化外键检查为0
+            'charset': 'utf8mb4'
+        }
+    }
+}
+```
+
+### 数据库初始化
+
+进入后端文件夹：`./MyWeb/`
+
+找到 DBTest.ipynb ，运行其中的脚本，即可对数据库进行初始化。
+
 ## 文件说明
+
 ```
 ├─.gitignore----------------------------------git忽略文件
 ├─.prettierrc---------------------------------配置文件

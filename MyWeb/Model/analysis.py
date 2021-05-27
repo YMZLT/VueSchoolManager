@@ -9,7 +9,8 @@ class Analysis():
         # 连接 sqlite 数据库:
         # sqlite://<nohostname>/<path>
         # where <path> is relative:
-        self.engine = sqlalchemy.create_engine("sqlite:///db.sqlite3")
+        # self.engine = sqlalchemy.create_engine("sqlite:///db.sqlite3")
+        self.engine = sqlalchemy.create_engine('mysql+pymysql://root:Forget,88@123.60.31.182:3306/schoolnew')
     def getBasicData(self,semester):
         # 计算每学期每个开课课程的难度系数、及格人数、及格率、平均分、最高分、最低分
         query = '''
@@ -55,6 +56,13 @@ class Analysis():
                 group by O.semester
                 '''.format(student_id)
         Avg_table = pd.read_sql_query(query, self.engine)
+        # query = '''
+        #         SELECT O.semester,AVG(score) as avg_score
+        #         FROM scoretable as S,opentable as O
+        #         where student_id = {0} and O.id = S.open_id
+        #         group by O.semester
+        #         '''.format(student_id)
+        # Avg_table = pd.read_sql_query(query, self.engine)
         return Avg_table.round(2)
 
 
