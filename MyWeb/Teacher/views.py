@@ -1,4 +1,4 @@
-from Student.views import StudentView
+# from Student.views import StudentView
 from rest_framework.response import Response
 from rest_framework.decorators import api_view
 from rest_framework.views import APIView
@@ -10,13 +10,6 @@ from Model import models as md
 # 2. 加载Serializer
 from Model import serializers
 
-<<<<<<< HEAD
-
-
-@api_view(['GET'])
-def Teacher_info(request):
-    """按学号查询教师信息
-=======
 class IsTeacher(BasePermission):
     """
     教师用户拥有的权限
@@ -38,7 +31,6 @@ class TeacherView(APIView):
     
 class Teacher_info(TeacherView):
     """查询教师信息
->>>>>>> d7d430e363dceebd0f3084a1c8c6d198925c894f
     """
     def get(self,request):
         user = request.user
@@ -218,17 +210,16 @@ class Open_search(TeacherView):
             'status': 200
         }
         return Response(data)
-<<<<<<< HEAD
-    serializer = serializers.OpenDetailSerializer(Open_instance, many=True)
-    data = {
-        'data': {
-            'Opens': serializer.data,
-            'total': len(serializer.data)
-        },
-        'msg': 'success',
-        'status': 200
-    }
-    return Response(data)
+        serializer = serializers.OpenDetailSerializer(Open_instance, many=True)
+        data = {
+            'data': {
+                'Opens': serializer.data,
+                'total': len(serializer.data)
+            },
+            'msg': 'success',
+            'status': 200
+        }
+        return Response(data)
 
 #上传教学大纲接口
 from rest_framework.viewsets import GenericViewSet
@@ -251,5 +242,3 @@ def Save_pdf(request):
 
 
 
-=======
->>>>>>> d7d430e363dceebd0f3084a1c8c6d198925c894f
