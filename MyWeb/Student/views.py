@@ -1,3 +1,5 @@
+from django.contrib.auth.hashers import check_password
+from django.contrib.auth.hashers import make_password
 from Model.analysis import Analysis
 from rest_framework.response import Response
 from rest_framework.decorators import api_view
@@ -55,38 +57,25 @@ class StudentInfo(StudentView):
             'data': serializer.data
         }
         return Response(data)
-
+        
     def put(self, request):
         """
-        更新学生信息
+        data: 传入原始密码，新密码
         """
-        user = request.user
-        try:
-            Student_instance = md.StudentTable.objects.get(pk=user.user_id)
-        except md.StudentTable.DoesNotExist:
+        user = request.user  # 当前登录用户
+        if check_password(request.data["password"], user.password):
+            user.password = make_password(request.data["password_new"])
+            user.save()
             data = {
-                'msg': 'error',
-                'status': 400,
-                'detail': '数据不存在！'
-            }
-            return Response(data)
-
-        serializer = serializers.StudentSerializer(
-            Student_instance, data=request.data, partial=True)
-        if serializer.is_valid():
-            serializer.save()
-            data = {
-                'data': {
-                    'Students': serializer.data,
-                },
-                'msg': 'success',
-                'status': 200
+                'msg': '密码修改成功',
+                'status': 200,
+                'detail': user.user_id
             }
             return Response(data)
         data = {
-            'msg': 'error',
+            'msg': '密码修改失败',
             'status': 400,
-            'detail': serializer.errors
+            'detail': '原始密码校验失败'
         }
         return Response(data)
 

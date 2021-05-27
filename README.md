@@ -23,12 +23,37 @@ cd MyWeb
 ```
 pip install -r requirements.txt
 ```
-#### 运行
+#### 数据库
+
+这里默认使用django自带的sqlite数据库，使用mysql数据库请看下面[配置mysql数据库](#anchor)
+
+- 数据库迁移
+
+  执行以下数据库迁移命令，会自动创建好在Model/models.py 文件中已定义的表。
+
+  ```shell
+  python manage.py makemigrations
+  python manage.py migrate
+  ```
+
+<img src="./images/image-20210527202459698.png" alt="image-20210527202459698" style="zoom:67%;" />
+
+- 数据库初始化
+
+  ```shell
+  python DBSettings.py
+  ```
+
+<img src="./images/image-20210527202800704.png" alt="image-20210527202800704" style="zoom:67%;" />
+
+#### 运行后端
 
 ```
 py manage.py runserver 8001
 ```
 > 此处的端口8001需要与前端一致
+
+<img src="./images/image-20210527203004547.png" alt="image-20210527203004547" style="zoom:67%;" />
 
 #### 查看API
 
@@ -38,6 +63,8 @@ py manage.py runserver 8001
 ### 3. 运行前端
 
 **确保本地已经有node.js环境**
+
+返回项目文件夹
 
 #### 安装依赖
 ```
@@ -63,9 +90,41 @@ npm run serve
     - user_id : 18122801
     - password: 12345678
 
+#### 效果截图
+
+<img src="./images/login.jpg" alt="login" style="zoom:67%;" />
+
+<img src="./images/student_1.jpg" alt="student_1" style="zoom:67%;" />
+
+<img src="./images/student_2.jpg" alt="student_2" style="zoom:67%;" />
+
+<img src="./images/student_3.jpg" alt="student_3" style="zoom:67%;" />
+
+<img src="./images/student_4.jpg" alt="student_4" style="zoom:67%;" />
+
+<img src="./images/teacher_2.jpg" alt="teacher_2" style="zoom:67%;" />
+
+<img src="./images/teacher_3.jpg" alt="teacher_3" style="zoom:67%;" />
+
+<img src="./images/teacher_4.jpg" alt="teacher_4" style="zoom:67%;" />
+
+<img src="./images/teacher_5.jpg" alt="teacher_5" style="zoom:67%;" />
+
+<img src="./images/admin_1.jpg" alt="admin_1" style="zoom:67%;" />
+
+<img src="./images/admin_2.jpg" alt="admin_2" style="zoom:67%;" />
+
+<img src="./images/admin_3.jpg" alt="admin_3" style="zoom:67%;" />
+
+<img src="./images/admin_4.jpg" alt="admin_4" style="zoom:67%;" />
+
+<img src="./images/admin_5.jpg" alt="admin_5" style="zoom:67%;" />
+
 ## 其他
 
-### 修改数据库
+### 配置mysql数据库
+
+<span id = "anchor"></span>
 
 默认使用的是自带的sqlite数据库，使用mysql数据库需要重新配置一下。
 
@@ -74,36 +133,27 @@ npm run serve
 找到seetings.py文件，将数据库配置修改一下:
 
 ```python
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.sqlite3',
-#         'NAME': BASE_DIR / 'db.sqlite3',
-#     }
-# }
-# 连接mysql数据库
-DATABASES = {
+mysql = "mysql+pymysql://root:Forget,88@123.60.31.182:3306/schoolnew"
+DBSettings = mysql
+# mysql数据库
+DATABASES_mysql = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME':'schoolnew', # 数据库名称，需要实现建好
-        'USER':'root', # 数据库用户名
-        'PASSWORD':'Forget,88', # 数据库密码
-        'HOST':'123.60.31.182', # 数据库所在主机地址，如果是本机的话，用localhost
-        'PORT':'3306', # 数据库端口
+        'NAME': 'schoolnew',  # 数据库名称，需要实现建好
+        'USER': 'root',  # 数据库用户名
+        'PASSWORD': 'Forget,88',  # 数据库密码
+        'HOST': '123.60.31.182',  # 数据库所在主机地址，如果是本机的话，用localhost
+        'PORT': '3306',  # 数据库端口
         'OPTIONS': {
-            'init_command': 'SET foreign_key_checks = 0;', # 初始化外键检查为0
+            'init_command': 'SET foreign_key_checks = 0;',  # 初始化外键检查为0
             'charset': 'utf8mb4'
         }
     }
 }
+DATABASES_settings = DATABASES_mysql
 ```
 
-### 数据库初始化
-
-进入后端文件夹：`./MyWeb/`
-
-找到 DBTest.ipynb ，运行其中的脚本，即可对数据库进行初始化。
-
-## 文件说明
+### 文件说明
 
 ```
 ├─.gitignore----------------------------------git忽略文件
@@ -114,6 +164,7 @@ DATABASES = {
 ├─postcss.config.js---------------------------配置文件
 ├─README.md-----------------------------------说明文档
 ├─vue.config.js-------------------------------配置文件
+├─images--------------------------------------效果截图
 ├─src-----------------------------------------前端主要项目文件
 |  ├─App.vue----------------------------------项目全局配置文件
 |  ├─main.js----------------------------------项目入口文件
@@ -133,6 +184,12 @@ DATABASES = {
 |        └─MyWeb------------------------------项目主文件
 └─public--------------------------------------公共资源文件
 ````
+### 测试工具
+
+postman
+
+下载连接：https://www.postman.com/
+
 ## 参考资料
 
 1. [Django 官方中文文档](https://docs.djangoproject.com/zh-hans/3.2/)
@@ -143,14 +200,5 @@ DATABASES = {
 
 4. [后台系统参考](http://gl.timemeetyou.com/#/login)
 
-### 测试工具
-postman
 
-下载连接：https://www.postman.com/
-
-
-### 其他
-
-#### 项目目录生成
-https://juejin.cn/post/6844903861254094862#heading-2
 

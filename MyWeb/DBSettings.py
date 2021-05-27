@@ -67,6 +67,7 @@ def init_db(DBSettings):
             index=False,
             if_exists='append'
         )
+        print("{0}表初始化成功！".format(tableIndex["table"]))
 
 
 if __name__ == '__main__':

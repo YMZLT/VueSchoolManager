@@ -1,11 +1,11 @@
 import pandas as pd
 import sqlalchemy
-from DBSettings import sqlSettings
+from DBSettings import DBSettings
 
 class Analysis():
     def __init__(self) -> None:
         # 连接数据库:
-        self.engine = sqlalchemy.create_engine(sqlSettings)
+        self.engine = sqlalchemy.create_engine(DBSettings)
     def getBasicData(self,semester):
         # 计算每学期每个开课课程的难度系数、及格人数、及格率、平均分、最高分、最低分
         query = '''
