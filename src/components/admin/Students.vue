@@ -103,7 +103,7 @@
       @close="addDialogClosed"
     >
       <!-- 内容主题区域 -->
-      <el-form
+      <el-form label-position="left"
         :model="addForm"
         :rules="addFormRules"
         ref="addFormRef"
@@ -139,8 +139,8 @@
             <el-radio :label="'D'">D</el-radio>
           </el-radio-group>
         </el-form-item>
-        <el-form-item label="院系号" prop="college">
-          <el-select v-model="addForm.college" placeholder="请选择院系号">
+        <el-form-item label="院系" prop="college">
+          <el-select v-model="addForm.college" placeholder="请选择院系">
             <el-option
               v-for="item in collegeList"
               :key="item.college_id"
@@ -165,7 +165,7 @@
       @close="editDialogClosed"
     >
       <!-- 内容主题区域 -->
-      <el-form
+      <el-form label-position="left"
         :model="editForm"
         :rules="editFormRules"
         ref="editFormRef"
@@ -189,8 +189,8 @@
             <el-radio :label="'D'">D</el-radio>
           </el-radio-group>
         </el-form-item>
-        <el-form-item label="院系号" prop="college">
-          <el-select v-model="editForm.college" placeholder="请选择院系号">
+        <el-form-item label="院系" prop="college">
+          <el-select v-model="editForm.college" placeholder="请选择院系">
             <el-option
               v-for="item in collegeList"
               :key="item.college_id"

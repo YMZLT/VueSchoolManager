@@ -11,12 +11,19 @@ import Colleges from './components/admin/Colleges.vue'
 import Courses from './components/admin/Courses.vue'
 import Opens from './components/admin/Opens.vue'
 import Selections from './components/admin/Selections.vue'
+import AddSelection from './components/admin/AddSelection.vue'
 import Scores from './components/admin/Scores.vue'
+import ScoresAnalysis from './components/admin/ScoresAnalysis.vue'
 
 
 // 学生页面
 import Home_student from './components/student/Home.vue'
 import Welcome_student from './components/student/Welcome.vue'
+import Courses_Info from './components/student/Courses.vue'
+import Select from './components/student/Select.vue'
+import Analysis from './components/student/Analysis.vue'
+
+
 // 教师页面
 import Home_teacher from './components/teacher/Home.vue'
 import Welcome_teacher from './components/teacher/Welcome.vue'
@@ -48,7 +55,9 @@ const router = new Router({
         { path: '/admin/courses', component: Courses },
         { path: '/admin/opens', component: Opens },
         { path: '/admin/selections', component: Selections },
+        { path: '/admin/addSelection', component: AddSelection },
         { path: '/admin/scores', component: Scores },
+        { path: '/admin/scoresAnalysis', component: ScoresAnalysis },
       ]
     },
     
@@ -58,6 +67,9 @@ const router = new Router({
       redirect: '/student/welcome',
       children: [
         { path: '/student/welcome', component: Welcome_student },
+        { path: '/student/courses', component: Courses_Info },
+        { path: '/student/select', component: Select },
+        { path: '/student/Analysis', component: Analysis },
       ]
     },
     {

@@ -123,6 +123,12 @@ export default {
           path: null,
           children: [
             {
+              id: 0,
+              authName: '添加选课',
+              path: 'addSelection/',
+              children: [],
+            },
+            {
               id: 1,
               authName: '选课管理',
               path: 'selections/',
@@ -132,6 +138,12 @@ export default {
               id: 2,
               authName: '成绩管理',
               path: 'scores/',
+              children: [],
+            },
+            {
+              id: 3,
+              authName: '成绩分析',
+              path: 'scoresAnalysis/',
               children: [],
             },
           ],

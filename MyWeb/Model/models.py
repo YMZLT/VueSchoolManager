@@ -1,7 +1,6 @@
 from django.db import models
 from django.contrib.auth.base_user import (AbstractBaseUser, BaseUserManager)
 from django.conf import settings
-from django.utils.tree import Node
 
 # Create your models here.
 
@@ -72,6 +71,8 @@ class TeacherManager(BaseUserManager):
 class CollegeTable(models.Model):  # 院系表
     college_id = models.CharField(max_length=10, primary_key=True)  # 院系号
     college_name = models.CharField(max_length=20)  # 名称
+    class Meta:
+        db_table="CollegeTable"
 
 # 扩展用户模型
 
@@ -88,8 +89,10 @@ class User(AbstractBaseUser):
     #  用命令 createsuperuser 添加用户时,user_type,user_name 是需要提示用户填写的内容
     REQUIRED_FIELDS = ['user_name']
 
-    def __str__(self):
-        return self.user_id
+    # def __str__(self):
+    #     return self.user_id
+    class Meta:
+        db_table="User"
 
 
 class StudentTable(models.Model):
@@ -99,6 +102,9 @@ class StudentTable(models.Model):
     college = models.ForeignKey(
         CollegeTable, on_delete=models.CASCADE)  # 院系号
     objects = StudentManager()
+    class Meta:
+        db_table="StudentTable"
+    
 
 
 class TeacherTable(models.Model):
@@ -108,12 +114,16 @@ class TeacherTable(models.Model):
     college = models.ForeignKey(
         CollegeTable, on_delete=models.CASCADE)  # 院系号
     objects = TeacherManager()
+    class Meta:
+        db_table="TeacherTable"
 
 
 class CourseTable(models.Model):  # 课程表(默认学分4，学时40)
     course_id = models.CharField(max_length=10, primary_key=True)  # 课号
     course_name = models.CharField(max_length=20)  # 课名
     credit = models.IntegerField(default=4)  # 学分
+    class Meta:
+        db_table="CourseTable"
 
     
 class OpenTable(models.Model):  # 开课表
@@ -124,6 +134,8 @@ class OpenTable(models.Model):  # 开课表
     course_time = models.CharField(max_length=20)  # 上课时间
     class Meta:
         unique_together=("course","teacher","semester")
+    class Meta:
+        db_table="OpenTable"
     
 
 
@@ -136,3 +148,4 @@ class ScoreTable(models.Model):  # 选课表
     score = models.FloatField(default=0)  # 最终成绩
     class Meta:
         unique_together=("student","open")
+        db_table="ScoreTable"

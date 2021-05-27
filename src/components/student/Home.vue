@@ -4,7 +4,7 @@
     <el-header>
       <div>
         <img src="../../assets/system.png" alt="" />
-        <span>上海大学教务管理系统——学生</span>
+        <span>上海大学教务管理系统学生端</span>
       </div>
       <el-button type="info" @click="logout">退出</el-button>
     </el-header>
@@ -16,17 +16,17 @@
         <el-menu
           background-color="#2b4b6b"
           text-color="#fff"
-          unique-opened
           :collapse="isCollapse"
           :collapse-transition="false"
           router
           :default-active="activePath"
         >
           <!-- 一级菜单 -->
-          <el-submenu
-            :index="item.id + ''"
+          <el-menu-item
+            :index="'/' + item.path"
             v-for="item in menuList"
             :key="item.id"
+            @click="saveNavState('/' + item.path)"
           >
             <!-- 一级菜单模板 -->
             <template slot="title">
@@ -35,20 +35,7 @@
               <!-- 文本 -->
               <span>{{ item.authName }}</span>
             </template>
-
-            <!-- 二级菜单 -->
-            <el-menu-item
-              :index="'/' + subItem.path"
-              v-for="subItem in item.children"
-              :key="subItem.id"
-              @click="saveNavState('/' + subItem.path)"
-            >
-              <template slot="title">
-                <i class="el-icon-menu"></i>
-                <span>{{ subItem.authName }}</span>
-              </template>
-            </el-menu-item>
-          </el-submenu>
+          </el-menu-item>
         </el-menu>
       </el-aside>
       <!-- 右侧主体 -->
@@ -68,60 +55,29 @@ export default {
       // 左侧菜单数据
       menuList: [
         {
-          id: 5,
-          authName: '用户管理',
-          path: null,
-          children: [
-            {
-              id: 4,
-              authName: '用户列表',
-              path: 'users/',
-              children: [],
-            },
-          ],
+          id: 0,
+          authName: '首页',
+          path: 'student/home',
         },
         {
           id: 1,
-          authName: '课程管理',
-          path: null,
-          children: [
-            {
-              id: 4,
-              authName: '课程列表',
-              path: 'courses/',
-              children: [],
-            },
-          ],
+          authName: '课程信息',
+          path: 'student/courses',
         },
         {
           id: 2,
-          authName: '学生管理',
-          path: null,
-          children: [
-            {
-              id: 4,
-              authName: '学生列表',
-              path: 'students/',
-              children: [],
-            },
-          ],
+          authName: '选课信息',
+          path: 'student/select',
         },
         {
           id: 3,
-          authName: '教师管理',
-          path: null,
-          children: [
-            {
-              id: 4,
-              authName: '教师列表',
-              path: 'teachers/',
-              children: [],
-            },
-          ],
+          authName: '成绩分析',
+          path: 'student/Analysis',
         },
       ],
       // 菜单图标
       iconsObj: {
+        0: 'el-icon-s-custom',
         1: 'el-icon-s-custom',
         2: 'el-icon-s-promotion',
         3: 'el-icon-s-goods',

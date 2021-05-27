@@ -2,145 +2,145 @@
     {
         "teacher": "1001",
         "course": "01",
-        "semaster": "202001",
+        "semester": "202001",
         "course_time": "星期一1-2"
     },
     {
         "teacher": "1002",
         "course": "03",
-        "semaster": "202001",
+        "semester": "202001",
         "course_time": "星期一1-2"
     },
     {
         "teacher": "1003",
         "course": "02",
-        "semaster": "202001",
+        "semester": "202001",
         "course_time": "星期一1-2"
     },
     {
         "teacher": "1004",
         "course": "02",
-        "semaster": "202001",
+        "semester": "202001",
         "course_time": "星期一1-2"
     },
     {
         "teacher": "1005",
         "course": "06",
-        "semaster": "202001",
+        "semester": "202001",
         "course_time": "星期一1-2"
     },
     {
         "teacher": "1006",
         "course": "07",
-        "semaster": "202001",
+        "semester": "202001",
         "course_time": "星期一1-2"
     },
     {
         "teacher": "1007",
         "course": "08",
-        "semaster": "202001",
+        "semester": "202001",
         "course_time": "星期一1-2"
     },
     {
         "teacher": "1008",
         "course": "08",
-        "semaster": "202001",
+        "semester": "202001",
         "course_time": "星期一1-2"
     },
     {
         "teacher": "1009",
         "course": "10",
-        "semaster": "202004",
+        "semester": "202004",
         "course_time": "星期一1-2"
     },
     {
         "teacher": "1010",
         "course": "11",
-        "semaster": "202004",
+        "semester": "202004",
         "course_time": "星期一1-2"
     },
     {
         "teacher": "1001",
         "course": "11",
-        "semaster": "202004",
+        "semester": "202004",
         "course_time": "星期一1-2"
     },
     {
         "teacher": "1001",
         "course": "09",
-        "semaster": "202004",
+        "semester": "202004",
         "course_time": "星期一1-2"
     },
     {
         "teacher": "1002",
         "course": "12",
-        "semaster": "202004",
+        "semester": "202004",
         "course_time": "星期一1-2"
     },
     {
         "teacher": "1003",
         "course": "01",
-        "semaster": "202004",
+        "semester": "202004",
         "course_time": "星期一1-2"
     },
     {
         "teacher": "1004",
         "course": "01",
-        "semaster": "202003",
+        "semester": "202003",
         "course_time": "星期一1-2"
     },
     {
         "teacher": "1005",
         "course": "02",
-        "semaster": "202003",
+        "semester": "202003",
         "course_time": "星期一1-2"
     },
     {
         "teacher": "1006",
         "course": "13",
-        "semaster": "202003",
+        "semester": "202003",
         "course_time": "星期一1-2"
     },
     {
         "teacher": "1007",
         "course": "14",
-        "semaster": "202003",
+        "semester": "202003",
         "course_time": "星期一1-2"
     },
     {
         "teacher": "1008",
         "course": "15",
-        "semaster": "202004",
+        "semester": "202004",
         "course_time": "星期一1-2"
     },
     {
         "teacher": "1009",
         "course": "16",
-        "semaster": "202002",
+        "semester": "202002",
         "course_time": "星期一1-2"
     },
     {
         "teacher": "1001",
         "course": "18",
-        "semaster": "202002",
+        "semester": "202002",
         "course_time": "星期一1-2"
     },
     {
         "teacher": "1001",
         "course": "13",
-        "semaster": "202002",
+        "semester": "202002",
         "course_time": "星期一1-2"
     },
     {
         "teacher": "1002",
         "course": "15",
-        "semaster": "202002",
+        "semester": "202002",
         "course_time": "星期一1-2"
     },
     {
         "teacher": "1003",
         "course": "14",
-        "semaster": "202002",
+        "semester": "202002",
         "course_time": "星期一1-2"
     }
 ]
