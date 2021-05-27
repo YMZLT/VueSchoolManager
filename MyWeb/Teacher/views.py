@@ -1,4 +1,4 @@
-from Student.views import StudentView
+# from Student.views import StudentView
 from rest_framework.response import Response
 from rest_framework.decorators import api_view
 from rest_framework.views import APIView
@@ -210,3 +210,35 @@ class Open_search(TeacherView):
             'status': 200
         }
         return Response(data)
+        serializer = serializers.OpenDetailSerializer(Open_instance, many=True)
+        data = {
+            'data': {
+                'Opens': serializer.data,
+                'total': len(serializer.data)
+            },
+            'msg': 'success',
+            'status': 200
+        }
+        return Response(data)
+
+#上传教学大纲接口
+from rest_framework.viewsets import GenericViewSet
+# class BookInfoViewSet(GenericViewSet):
+	# 保存图片
+@api_view(['POST'])
+def Save_pdf(request):
+    file = request.FILES.get('file')
+    try:
+        # 构造文件保存路径
+        file_path = './teachingschedule/files/' + file.name
+        # 保存文件
+        with open(file_path, 'wb+') as f:
+            f.write(file.read())
+            f.close()
+        response = {'file': file.name, 'code': 200, 'msg': "添加成功"}
+    except:
+        response = {'file': '', 'code': 201, 'msg': "添加失败"}
+    return Response(response)
+
+
+

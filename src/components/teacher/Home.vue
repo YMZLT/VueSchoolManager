@@ -3,7 +3,7 @@
     <!-- 头部区域 -->
     <el-header>
       <div>
-        <img src="../../assets/system.png" alt="" />
+        <img src="../../assets/logo_Shu.png" alt="" />
         <span>上海大学教务管理系统——教师</span>
       </div>
       <el-button type="info" @click="logout">退出</el-button>
@@ -21,7 +21,8 @@
           :collapse-transition="false"
           router
           :default-active="activePath"
-        >
+          active-text-color="#409BFF"
+                 >
           <!-- 一级菜单 -->
           <el-submenu
             :index="item.id + ''"
@@ -31,22 +32,22 @@
             <!-- 一级菜单模板 -->
             <template slot="title">
               <!-- 图标 -->
-              <i :class="iconsObj[item.id]"></i>
+              <i class="el-icon-setting"></i>
               <!-- 文本 -->
               <span>{{ item.authName }}</span>
             </template>
 
             <!-- 二级菜单 -->
             <el-menu-item
-              :index="'/' + subItem.path"
+              :index="'/teacher/'+subItem.path"
               v-for="subItem in item.children"
-              :key="subItem.id"
-              @click="saveNavState('/' + subItem.path)"
+              :key="subItem.id" 
+              @click ="saveNavState('/teacher/'+subItem.path)"
             >
               <template slot="title">
                 <i class="el-icon-menu"></i>
                 <span>{{ subItem.authName }}</span>
-              </template>
+              </template>    
             </el-menu-item>
           </el-submenu>
         </el-menu>
@@ -66,75 +67,87 @@ export default {
   data() {
     return {
       // 左侧菜单数据
-      menuList: [
-        {
-          id: 5,
-          authName: '用户管理',
-          path: null,
-          children: [
+        menuList: [
             {
-              id: 4,
-              authName: '用户列表',
-              path: 'users/',
-              children: [],
+                //id: 1,
+                authName: '教学相关',
+                path: '',
+                children: [
+                    {
+                        //id: 2,
+                        authName: '课程教学大纲',
+                        path: 'teachingschedule/',
+                        
+                    },
+                    {
+                      //  id: 2,
+                        authName: '学生名单',
+                        path: 'dictionary/',
+                        children: [
+                        ],
+                    },
+                    {
+                       // id: 2,
+                        authName: '成绩录入',
+                        path: 'grade/',
+                        children: [
+                        ],
+                    },
+                    {
+                       // id: 2,
+                        authName: '课程班级成绩查询',
+                        path: 'select/',
+                        children: [
+                        ],
+                    },
+                   /* {
+                       // id: 2,
+                        authName: '教学情况总结表',
+                        path: null,
+                        children: [
+                        ],
+                    },*/
+
+                ],
             },
-          ],
-        },
-        {
-          id: 1,
-          authName: '课程管理',
-          path: null,
-          children: [
-            {
-              id: 4,
-              authName: '课程列表',
-              path: 'courses/',
-              children: [],
-            },
-          ],
-        },
-        {
-          id: 2,
-          authName: '学生管理',
-          path: null,
-          children: [
-            {
-              id: 4,
-              authName: '学生列表',
-              path: 'students/',
-              children: [],
-            },
-          ],
-        },
-        {
-          id: 3,
-          authName: '教师管理',
-          path: null,
-          children: [
-            {
-              id: 4,
-              authName: '教师列表',
-              path: 'teachers/',
-              children: [],
-            },
-          ],
-        },
+           /* {
+               // id: 3,
+                authName: '教学质量评估',
+                path: '',
+                children: [
+                    {
+                        //id: 2,
+                        authName: '课堂教学质量评估',
+                        path: '',
+
+                    },
+                    {
+                       // id: 2,
+                        authName:'历史授课清单及评教',
+                        path: '',
+                        children: [
+                        ],
+                    },
+
+                ],
+            },*/
+
       ],
       // 菜单图标
       iconsObj: {
-        1: 'el-icon-s-custom',
-        2: 'el-icon-s-promotion',
-        3: 'el-icon-s-goods',
+        1: 'el-icon-menu',
+        2: 'el-icon-date',
+        3: 'el-icon-reading',
         4: 'el-icon-s-order',
         5: 'el-icon-s-data',
       },
       // 是否折叠导航菜单栏
       isCollapse: false,
-      // 被激活的链接地址
+      // 右侧目录栏被激活的链接地址
       activePath: '',
     }
   },
-  created() {
+  created() {[[]]
     // this.getMenuList()
     this.activePath = window.sessionStorage.getItem('activePath')
   },
@@ -148,7 +161,7 @@ export default {
     toggleCollapse() {
       this.isCollapse = !this.isCollapse
     },
-    // 保存链接的激活状态
+    // 保存链接的激活状态到sessionstorage 
     saveNavState(activePath) {
       window.sessionStorage.setItem('activePath', activePath)
       this.activePath = activePath
@@ -164,23 +177,29 @@ export default {
   display: flex;
   justify-content: space-between;
   padding-left: 0;
-  align-items: center;
+  align-items: center; //退出图标居中
   color: #eceff1;
   font-size: 20px;
-  > div {
+ > div {
     display: flex;
     align-items: center;
+    height:auto;
     span {
       margin-left: 15px;
+      font-size:20px;
     }
     img {
       height: 50px;
       width: 50px;
     }
+
   }
 }
 .el-aside {
   background-color: #2b4b6b;
+  > div{
+           font-size:15px;
+       }
   .el-menu {
     border-right: none;
   }

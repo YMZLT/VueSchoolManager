@@ -10,7 +10,11 @@
     "core-js": "^2.6.5",
     "echarts": "^5.1.1",
     "element-ui": "^2.4.5",
+    "html2canvas": "^1.0.0-rc.7",
+    "print-js": "^1.6.0",
     "vue": "^2.6.10",
+    "vue-pdf": "^4.2.0",
+    "vue-print-nb": "^1.7.4",
     "vue-router": "^3.0.3"
   },
   "devDependencies": {

@@ -15,6 +15,7 @@ import AddSelection from './components/admin/AddSelection.vue'
 import Scores from './components/admin/Scores.vue'
 import ScoresAnalysis from './components/admin/ScoresAnalysis.vue'
 
+
 // 学生页面
 import Home_student from './components/student/Home.vue'
 import Welcome_student from './components/student/Welcome.vue'
@@ -26,6 +27,10 @@ import Analysis from './components/student/Analysis.vue'
 // 教师页面
 import Home_teacher from './components/teacher/Home.vue'
 import Welcome_teacher from './components/teacher/Welcome.vue'
+import teachingschedule from './components/teacher/teachingschedule.vue'
+import select from './components/teacher/select.vue'
+import dictionary from './components/teacher/dictionary.vue'
+import grade from './components/teacher/grade.vue'
 
 Vue.use(Router)
 
@@ -70,9 +75,13 @@ const router = new Router({
     {
       path: '/teacher/home',
       component: Home_teacher,
-      redirect: '/teacher/welcome',
+      redirect: '/teacher/welcome',//默认重定向到welcome
       children: [
-        { path: '/teacher/welcome', component: Welcome_teacher },
+          { path: '/teacher/welcome', component: Welcome_teacher },
+          { path: '/teacher/teachingschedule', component: teachingschedule },
+          { path: '/teacher/select', component: select },
+          { path: '/teacher/dictionary', component: dictionary },
+          { path: '/teacher/grade', component: grade }
       ]
     },
   ]
