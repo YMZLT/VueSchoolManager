@@ -10,7 +10,9 @@
 
 - 前端：vue3.x
 
-- 后端：Django3.x
+- 后端：[Django3.x](https://docs.djangoproject.com/zh-hans/3.2/)
+
+- 页面: [Element-UI](https://element.eleme.cn/#/zh-CN)
 
 ## 效果截图
 
