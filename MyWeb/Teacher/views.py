@@ -1,4 +1,5 @@
 # from Student.views import StudentView
+from rest_framework.viewsets import GenericViewSet
 from rest_framework.response import Response
 from rest_framework.decorators import api_view
 from rest_framework.views import APIView
@@ -9,6 +10,7 @@ from Model import models as md
 
 # 2. 加载Serializer
 from Model import serializers
+
 
 class IsTeacher(BasePermission):
     """
@@ -25,14 +27,17 @@ class IsTeacher(BasePermission):
             return False
         return True
 
+
 class TeacherView(APIView):
     '''教师用户'''
     permission_classes = (IsAuthenticated, IsTeacher,)
-    
+
+
 class Teacher_info(TeacherView):
     """查询教师信息
     """
-    def get(self,request):
+
+    def get(self, request):
         user = request.user
         try:
             Teacher_instance = md.TeacherTable.objects.get(pk=user.user_id)
@@ -51,13 +56,16 @@ class Teacher_info(TeacherView):
         }
         return Response(data)
 
+
 class Student_info(TeacherView):
     """按学号查询学生信息
     """
-    def get(self,request):
+
+    def get(self, request):
         query = request.query_params.dict()  # 变成字典
         try:
-            Student_instance = md.StudentTable.objects.get(pk=query['student_id'])
+            Student_instance = md.StudentTable.objects.get(
+                pk=query['student_id'])
         except md.StudentTable.DoesNotExist:
             data = {
                 'msg': 'error',
@@ -75,11 +83,13 @@ class Student_info(TeacherView):
         }
         return Response(data)
 
+
 class Teacher_edit(TeacherView):
     """
     更新当前登录的教师信息
     """
-    def put(self,request):
+
+    def put(self, request):
         user = request.user
         try:
             Teacher_instance = md.TeacherTable.objects.get(pk=user.user_id)
@@ -110,26 +120,35 @@ class Teacher_edit(TeacherView):
         }
         return Response(data)
 
+
 class Score_search(TeacherView):
     """按条件查询选课详细信息
     """
-    def get(self,request):
+
+    def get(self, request):
         query = request.query_params.dict()  # 变成字典
         try:
+            Score_instance = md.ScoreTable.objects.all()
             if "teacher" in query:
-                Score_instance = md.ScoreTable.objects.filter(open__teacher=query["teacher"])
+                Score_instance = Score_instance.filter(
+                    open__teacher=query["teacher"])
             if "student" in query:
-                Score_instance = Score_instance.filter(student=query["student"])
+                Score_instance = Score_instance.filter(
+                    student=query["student"])
             if "open" in query:
                 Score_instance = Score_instance.filter(open=query["open"])
             if "semester" in query:
-                Score_instance = Score_instance.filter(open__semester=query["semester"])
+                Score_instance = Score_instance.filter(
+                    open__semester=query["semester"])
             if "semester" in query:
-                Score_instance = Score_instance.filter(open__semester=query["semester"])
+                Score_instance = Score_instance.filter(
+                    open__semester=query["semester"])
             if "course" in query:
-                Score_instance = Score_instance.filter(open__course=query["course"])
+                Score_instance = Score_instance.filter(
+                    open__course=query["course"])
             if "course_time" in query:
-                Score_instance = Score_instance.filter(open__course_time=query["course_time"])
+                Score_instance = Score_instance.filter(
+                    open__course_time=query["course_time"])
         except md.ScoreTable.DoesNotExist:
             data = {
                 'msg': 'error',
@@ -137,7 +156,8 @@ class Score_search(TeacherView):
                 'detail': '数据不存在！'
             }
             return Response(data)
-        serializer = serializers.ScoreDetailSerializer(Score_instance, many=True)
+        serializer = serializers.ScoreDetailSerializer(
+            Score_instance, many=True)
         data = {
             'data': {
                 'Scores': serializer.data,
@@ -148,11 +168,13 @@ class Score_search(TeacherView):
         }
         return Response(data)
 
+
 class Score_edit(TeacherView):
     """
     修改成绩信息
     """
-    def put(self,request):
+
+    def put(self, request):
         query = request.query_params.dict()  # 变成字典
         try:
             Score_instance = md.ScoreTable.objects.filter(**query).first()
@@ -184,10 +206,12 @@ class Score_edit(TeacherView):
         }
         return Response(data)
 
+
 class Open_search(TeacherView):
     """按条件查询开课详细信息
     """
-    def get(self,request):
+
+    def get(self, request):
         user = request.user
         query = request.query_params.dict()  # 变成字典
         try:
@@ -210,21 +234,12 @@ class Open_search(TeacherView):
             'status': 200
         }
         return Response(data)
-        serializer = serializers.OpenDetailSerializer(Open_instance, many=True)
-        data = {
-            'data': {
-                'Opens': serializer.data,
-                'total': len(serializer.data)
-            },
-            'msg': 'success',
-            'status': 200
-        }
-        return Response(data)
 
-#上传教学大纲接口
-from rest_framework.viewsets import GenericViewSet
+# 上传教学大纲接口
 # class BookInfoViewSet(GenericViewSet):
-	# 保存图片
+       # 保存图片
+
+
 @api_view(['POST'])
 def Save_pdf(request):
     file = request.FILES.get('file')
@@ -239,6 +254,3 @@ def Save_pdf(request):
     except:
         response = {'file': '', 'code': 201, 'msg': "添加失败"}
     return Response(response)
-
-
-

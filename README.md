@@ -1,10 +1,46 @@
 # 教务管理系统
 
+本项目为上海大学教务管理系统，分为管理员端，学生端，教师端，实现了根据学工号登录、登录验证、信息管理、选课管理、成绩管理等功能。
+
+仅供交流学习使用！
+
 ## 技术栈
+
+采用BS架构，前后端分离。
 
 - 前端：vue3.x
 
 - 后端：Django3.x
+
+## 效果截图
+
+<img src="./images/login.jpg" alt="login" style="zoom:67%;" />
+
+<img src="./images/student_1.jpg" alt="student_1" style="zoom:67%;" />
+
+<img src="./images/student_2.jpg" alt="student_2" style="zoom:67%;" />
+
+<img src="./images/student_3.jpg" alt="student_3" style="zoom:67%;" />
+
+<img src="./images/student_4.jpg" alt="student_4" style="zoom:67%;" />
+
+<img src="./images/teacher_2.jpg" alt="teacher_2" style="zoom:67%;" />
+
+<img src="./images/teacher_3.jpg" alt="teacher_3" style="zoom:67%;" />
+
+<img src="./images/teacher_4.jpg" alt="teacher_4" style="zoom:67%;" />
+
+<img src="./images/teacher_5.jpg" alt="teacher_5" style="zoom:67%;" />
+
+<img src="./images/admin_1.jpg" alt="admin_1" style="zoom:67%;" />
+
+<img src="./images/admin_2.jpg" alt="admin_2" style="zoom:67%;" />
+
+<img src="./images/admin_3.jpg" alt="admin_3" style="zoom:67%;" />
+
+<img src="./images/admin_4.jpg" alt="admin_4" style="zoom:67%;" />
+
+<img src="./images/admin_5.jpg" alt="admin_5" style="zoom:67%;" />
 
 ## 运行方法
 
@@ -14,7 +50,8 @@ git clone https://gitee.com/wgjmcal/vue-school-manager
 ```
 ### 2. 运行后端
 
-#### 进入MyWeb文件夹
+进入MyWeb文件夹
+
 ```
 cd MyWeb
 ```
@@ -71,7 +108,7 @@ py manage.py runserver 8001
 npm install
 ```
 
-#### 运行
+#### 前端运行
 ```
 npm run serve
 ```
@@ -89,36 +126,6 @@ npm run serve
 - 学生账号：
     - user_id : 18122801
     - password: 12345678
-
-#### 效果截图
-
-<img src="./images/login.jpg" alt="login" style="zoom:67%;" />
-
-<img src="./images/student_1.jpg" alt="student_1" style="zoom:67%;" />
-
-<img src="./images/student_2.jpg" alt="student_2" style="zoom:67%;" />
-
-<img src="./images/student_3.jpg" alt="student_3" style="zoom:67%;" />
-
-<img src="./images/student_4.jpg" alt="student_4" style="zoom:67%;" />
-
-<img src="./images/teacher_2.jpg" alt="teacher_2" style="zoom:67%;" />
-
-<img src="./images/teacher_3.jpg" alt="teacher_3" style="zoom:67%;" />
-
-<img src="./images/teacher_4.jpg" alt="teacher_4" style="zoom:67%;" />
-
-<img src="./images/teacher_5.jpg" alt="teacher_5" style="zoom:67%;" />
-
-<img src="./images/admin_1.jpg" alt="admin_1" style="zoom:67%;" />
-
-<img src="./images/admin_2.jpg" alt="admin_2" style="zoom:67%;" />
-
-<img src="./images/admin_3.jpg" alt="admin_3" style="zoom:67%;" />
-
-<img src="./images/admin_4.jpg" alt="admin_4" style="zoom:67%;" />
-
-<img src="./images/admin_5.jpg" alt="admin_5" style="zoom:67%;" />
 
 ## 其他
 

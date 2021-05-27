@@ -4,7 +4,7 @@
     <el-header>
       <div>
         <img src="../../assets/logo_Shu.png" alt="" />
-        <span>上海大学教务管理系统——教师</span>
+        <span>上海大学教务管理系统教师端</span>
       </div>
       <el-button type="info" @click="logout">退出</el-button>
     </el-header>
@@ -14,7 +14,7 @@
       <el-aside :width="isCollapse ? '64px' : '200px'">
         <div class="toggle-button" @click="toggleCollapse">|||</div>
         <el-menu
-          background-color="#2b4b6b"
+          background-color="#043454"
           text-color="#fff"
           unique-opened
           :collapse="isCollapse"
@@ -173,7 +173,7 @@ export default {
 
 <style lang="less" scoped>
 .el-header {
-  background-color: #2b4b6b;
+  background-color: #043454;
   display: flex;
   justify-content: space-between;
   padding-left: 0;
@@ -196,7 +196,7 @@ export default {
   }
 }
 .el-aside {
-  background-color: #2b4b6b;
+  background-color: #043454;
   > div{
            font-size:15px;
        }

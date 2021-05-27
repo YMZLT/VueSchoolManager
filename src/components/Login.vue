@@ -45,7 +45,7 @@ export default {
       // 登录表单的数据
       // 教师
       loginForm: {
-        user_id: '18122801',
+        user_id: '1001',
         password: '12345678',
       },
       // 表单验证规则对象
