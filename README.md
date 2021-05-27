@@ -36,7 +36,7 @@ pip install -r requirements.txt
   python manage.py migrate
   ```
 
-<img src="./images/image-20210527202459698.png" alt="image-20210527202459698" style="zoom:67%;" />
+<img src="./images/image-20210527202446606.png" alt="image-20210527202446606" style="zoom:67%;" />
 
 - 数据库初始化
 
