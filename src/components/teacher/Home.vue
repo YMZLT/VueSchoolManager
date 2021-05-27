@@ -12,7 +12,7 @@
     <el-container>
       <!-- 侧边栏 -->
       <el-aside :width="isCollapse ? '64px' : '200px'">
-        <div class="toggle-button" @click="toggleCollapse">教师门户</div>
+        <div class="toggle-button" @click="toggleCollapse">|||</div>
         <el-menu
           background-color="#2b4b6b"
           text-color="#fff"
@@ -32,7 +32,7 @@
             <!-- 一级菜单模板 -->
             <template slot="title">
               <!-- 图标 -->
-              <i :class="iconsObj[item.id]"></i>
+              <i class="el-icon-setting"></i>
               <!-- 文本 -->
               <span>{{ item.authName }}</span>
             </template>
@@ -45,7 +45,7 @@
               @click ="saveNavState('/teacher/'+subItem.path)"
             >
               <template slot="title">
-                <i :class="iconsObj[subItem.id]"></i>
+                <i class="el-icon-menu"></i>
                 <span>{{ subItem.authName }}</span>
               </template>    
             </el-menu-item>
@@ -75,7 +75,7 @@ export default {
                 children: [
                     {
                         //id: 2,
-                        authName: '课程简介及教学大纲',
+                        authName: '课程教学大纲',
                         path: 'teachingschedule/',
                         
                     },

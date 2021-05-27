@@ -44,7 +44,7 @@
                 </el-col>
             </el-row>
             <!--学生成绩列表区域-->
-            <el-table :data="scorelistShow" border stripe>
+            <el-table :data="scorelistShow" border stripe :cell-style="cellStyle">
                 <el-table-column :label="this.selected + '   学期学生成绩单'" align="center">
                     <el-table-column type="index"></el-table-column>
                     <el-table-column label="学号" prop="student.user.user_id" align="center"></el-table-column>
@@ -151,6 +151,12 @@
                 let end = start + this.pageSize
                 this.scorelistShow = this.scorelist.slice(start, end)
             },
+            cellStyle(row, column, rowIndex, columnIndex) {
+            if(row.column.label == "成绩" && row.row.score < 60){
+                return "color:#FF6930";
+            }
+
+        },
         }
 
     }

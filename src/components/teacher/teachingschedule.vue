@@ -4,7 +4,7 @@
         <el-breadcrumb separator="/">
             <el-breadcrumb-item :to="{ path: '/teacher/welcome' }">首页</el-breadcrumb-item>
             <el-breadcrumb-item>教学相关</el-breadcrumb-item>
-            <el-breadcrumb-item>课程简介及教学大纲</el-breadcrumb-item>
+            <el-breadcrumb-item>课程教学大纲</el-breadcrumb-item>
         </el-breadcrumb>
         <el-card>
             <!-- 搜索与添加区域 v-model提供数据绑定功能-->
@@ -35,7 +35,7 @@
             </el-row>
             <!--课程列表区域-->
             <el-table :data="courselistShow" border stripe>
-                <el-table-column type="index" label="#"></el-table-column>
+                <el-table-column type="index" ></el-table-column>
                 <el-table-column label="课程号" prop="course.course_id"  align="center"></el-table-column>
                 <el-table-column label="课程名称" prop="course.course_name"  align="center"></el-table-column>
                 <el-table-column label="教师号" prop="teacher.user.user_id"  align="center"></el-table-column>
