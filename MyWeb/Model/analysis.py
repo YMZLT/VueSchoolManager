@@ -1,16 +1,11 @@
 import pandas as pd
 import sqlalchemy
-
+from DBSettings import sqlSettings
 
 class Analysis():
     def __init__(self) -> None:
-        # 连接 Mysql 数据库:
-        # engine = sqlalchemy.create_engine('mysql+pymysql://root:root@localhost:3306/express')
-        # 连接 sqlite 数据库:
-        # sqlite://<nohostname>/<path>
-        # where <path> is relative:
-        # self.engine = sqlalchemy.create_engine("sqlite:///db.sqlite3")
-        self.engine = sqlalchemy.create_engine('mysql+pymysql://root:Forget,88@123.60.31.182:3306/schoolnew')
+        # 连接数据库:
+        self.engine = sqlalchemy.create_engine(sqlSettings)
     def getBasicData(self,semester):
         # 计算每学期每个开课课程的难度系数、及格人数、及格率、平均分、最高分、最低分
         query = '''
