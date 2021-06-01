@@ -136,8 +136,6 @@ class OpenTable(models.Model):  # 开课表
         unique_together=("course","teacher","semester")
     class Meta:
         db_table="OpenTable"
-    
-
 
 
 class ScoreTable(models.Model):  # 选课表

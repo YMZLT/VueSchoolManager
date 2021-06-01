@@ -139,28 +139,29 @@ npm run serve
 
 进入后端文件夹：`./MyWeb/MyWeb/`
 
-找到seetings.py文件，将数据库配置修改一下:
+找到DBSetings.py文件，将数据库配置修改一下:
 
 ```python
-mysql = "mysql+pymysql://root:Forget,88@123.60.31.182:3306/schoolnew"
-DBSettings = mysql
-# mysql数据库
-DATABASES_mysql = {
+mysql = "mysql+pymysql://root:Forget,88@123.60.31.182:3306/schoolnew" #1
+DBSettings = mysql #2
+DATABASES_mysql = {  
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'schoolnew',  # 数据库名称，需要实现建好
-        'USER': 'root',  # 数据库用户名
-        'PASSWORD': 'Forget,88',  # 数据库密码
-        'HOST': '123.60.31.182',  # 数据库所在主机地址，如果是本机的话，用localhost
-        'PORT': '3306',  # 数据库端口
+        'NAME': 'schoolnew',  # 数据库名称，需要实现建好 3
+        'USER': 'root',  # 数据库用户名 4
+        'PASSWORD': 'Forget,88',  # 数据库密码 5 
+        'HOST': '123.60.31.182',  # 数据库所在主机地址，如果是本机的话，用localhost 6
+        'PORT': '3306',  # 数据库端口 7
         'OPTIONS': {
             'init_command': 'SET foreign_key_checks = 0;',  # 初始化外键检查为0
             'charset': 'utf8mb4'
         }
     }
 }
-DATABASES_settings = DATABASES_mysql
+DATABASES_settings = DATABASES_mysql #8 
 ```
+
+以上标数字的变量都需要修改。
 
 ### 文件说明
 
