@@ -16,7 +16,7 @@ sqlite = "sqlite:///db.sqlite3"
 mysql = "mysql+pymysql://root:Forget,88@123.60.31.182:3306/schoolnew"
 
 
-DBSettings = mysql
+DBSettings = sqlite
 
 
 # 2. settings 配置
@@ -44,7 +44,7 @@ DATABASES_mysql = {
     }
 }
 
-DATABASES_settings = DATABASES_mysql
+DATABASES_settings = DATABASES_sqlite
 
 # 数据库初始化
 def init_db(DBSettings):
