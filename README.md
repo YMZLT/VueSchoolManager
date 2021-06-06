@@ -169,7 +169,7 @@ DATABASES_settings = DATABASES_mysql #8
 
 <img src="./images/image-20210601103717658.png" alt="image-20210601103717658" style="zoom:67%;" />
 
-![image-20210601104148745](D:%5CSchoolManager%5Cvue-school-manager%5Cimage-20210601104148745.png)
+<img src="./images/image-20210601104148745.png" alt="image-20210601104148745" style="zoom:67%;" />
 
 ### 文件说明
 
