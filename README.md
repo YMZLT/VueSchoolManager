@@ -163,6 +163,14 @@ DATABASES_settings = DATABASES_mysql #8
 
 以上标数字的变量都需要修改。
 
+> 注意初始化文件只能运行一次，不然数据库里面的数据会重复。
+>
+> 如果配置出错，**把下面这两个文件删除**，**重建一个数据库**，**修改上面提到的数据库配置**，从数据库迁移这一步再来一遍。
+
+<img src="./images/image-20210601103717658.png" alt="image-20210601103717658" style="zoom:67%;" />
+
+![image-20210601104148745](D:%5CSchoolManager%5Cvue-school-manager%5Cimage-20210601104148745.png)
+
 ### 文件说明
 
 ```
